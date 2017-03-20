@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_sign_in"
+    android:layout_width="match_parent"
+    android:background="@drawable/sejour_en_familly_en_guadeloupe_villa_small"
+    android:layout_height="match_parent"
+    tools:context=".Log_In.MainSignInActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Treepr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/treepr_logo"
+        android:textSize="70dp"
+        android:id="@+id/textViewTreeprTitleNameSignIn"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textColor="@color/treepr_logo"
+            android:textSize="30dp"
+            android:layout_below="@+id/textViewTreeprTitleNameSignIn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:id="@+id/textViewSignInLable"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textViewSignInLable"
+            android:layout_marginTop="110dp"
+            android:hint="@string/E_Mail"
+            android:textColorHint="@color/black"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:id="@+id/editTextEmailInput"
+            android:textColor="@color/black"
+            android:background="@drawable/email_drawable_sign_in"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+            style="@style/Widget.AppCompat.EditText" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editTextEmailInput"
+            android:layout_marginTop="10dp"
+            android:hint="@string/password"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:inputType="textPassword"
+            android:id="@+id/editTextPasswordInput"
+            android:gravity="center"
+            android:background="@drawable/email_drawable_sign_in"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+            style="@style/Widget.AppCompat.EditText" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:background="@drawable/oval_shap_button"
+            android:id="@+id/buttonSignInLogInPage"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
+            android:layout_below="@+id/editTextPasswordInput"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password"
+            android:visibility="gone"
+            android:layout_below="@id/buttonSignInLogInPage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"/>
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/buttonSignInLogInPage"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="20dp"
+    android:id="@+id/frameLayoutFbButton"
+    android:layout_marginBottom="30dp" >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:id="@+id/relativeLayoutFbButton">
+        <TextView
+            android:id="@+id/buttonTopOnFb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/oval_shap_button"
+            android:layout_gravity="center_horizontal"
+            android:text="Facebook Login"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"  />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+
+</RelativeLayout>
+
+</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="If you are not registered Please Sign Up !"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:id="@+id/textViewSignUp"
+            android:layout_below="@+id/frameLayoutFbButton"/>
+    </RelativeLayout>
+</ScrollView>
+</FrameLayout>

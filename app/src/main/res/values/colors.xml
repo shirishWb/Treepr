@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1ABC9C</color>
+    <color name="colorPrimaryDark">#14967c</color>
+    <color name="colorAccent">#008754</color>
+    <color name="white">#ffffff</color>
+    <color name="sign_up_button_backgrnd">#00d181</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="black">#000000</color>
+    <color name="gray_color">#999B9B</color>
+    <color name="treepr_logo">#008754</color>
+    <color name="tab_bottom">#fff64e</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="profileBack">#90c320</color>
+    <color name="edit_text_back">#9cffffff</color>
+</resources>

@@ -1,0 +1,287 @@
+<html>
+<head>
+<title>activity_main_profile_edit.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(232,191,106); }
+.s1 { color: rgb(186,186,186); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(169,183,198); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+activity_main_profile_edit.xml</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s2">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s2">&quot;utf-8&quot;</span><span class="s0">?&gt;</span><span class="s3"> 
+</span><span class="s0">&lt;ScrollView </span><span class="s1">xmlns:android=</span><span class="s2">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="s0"> 
+    </span><span class="s1">xmlns:tools=</span><span class="s2">&quot;http://schemas.android.com/tools&quot;</span><span class="s0"> 
+    </span><span class="s1">xmlns:app=</span><span class="s2">&quot;http://schemas.android.com/apk/res-auto&quot;</span><span class="s0"> 
+    </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/activity_main_profile_edit&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_height=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+    </span><span class="s1">tools:context=</span><span class="s2">&quot;com.whitebirdtechnology.treepr.ProfileUpdate.MainProfileEditActivity&quot;</span><span class="s0">&gt;</span><span class="s3">
+</span><span class="s0">&lt;RelativeLayout 
+    </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_height=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+    </span><span class="s1">android:paddingBottom=</span><span class="s2">&quot;@dimen/activity_vertical_margin&quot;</span><span class="s0"> 
+    </span><span class="s1">android:paddingLeft=</span><span class="s2">&quot;@dimen/activity_horizontal_margin&quot;</span><span class="s0"> 
+    </span><span class="s1">android:paddingRight=</span><span class="s2">&quot;@dimen/activity_horizontal_margin&quot;</span><span class="s0"> 
+    </span><span class="s1">android:paddingTop=</span><span class="s2">&quot;@dimen/activity_vertical_margin&quot;</span><span class="s0"> 
+    </span><span class="s1">tools:ignore=</span><span class="s2">&quot;ScrollViewSize&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;ProgressBar 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/progressBarProfileEdit&quot;</span><span class="s0"> 
+        </span><span class="s1">style=</span><span class="s2">&quot;?android:attr/progressBarStyleLarge&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_centerHorizontal=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_centerVertical=</span><span class="s2">&quot;true&quot;</span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;android.support.v7.widget.CardView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;150dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;150dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:elevation=</span><span class="s2">&quot;12dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">app:cardCornerRadius=</span><span class="s2">&quot;70dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:innerRadius=</span><span class="s2">&quot;0dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:shape=</span><span class="s2">&quot;ring&quot;</span><span class="s0"> 
+        </span><span class="s1">android:thicknessRatio=</span><span class="s2">&quot;1.9&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+ 
+ 
+ 
+        </span><span class="s0">&lt;ImageView 
+            </span><span class="s1">android:layout_width=</span><span class="s2">&quot;150dp&quot;</span><span class="s0"> 
+            </span><span class="s1">android:layout_height=</span><span class="s2">&quot;150dp&quot;</span><span class="s0"> 
+            </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/imageViewProfilePage&quot;</span><span class="s0"> 
+            </span><span class="s1">android:src=</span><span class="s2">&quot;@drawable/com_facebook_profile_picture_blank_portrait&quot;</span><span class="s0"> 
+            </span><span class="s1">android:layout_above=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+            </span><span class="s1">android:layout_alignLeft=</span><span class="s2">&quot;@+id/textViewGender&quot;</span><span class="s0"> 
+            </span><span class="s1">android:layout_alignStart=</span><span class="s2">&quot;@+id/textViewGender&quot;</span><span class="s0"> 
+            </span><span class="s1">tools:ignore=</span><span class="s2">&quot;ContentDescription&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+        </span><span class="s0">&lt;/ImageView&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;/android.support.v7.widget.CardView&gt;</span><span class="s3"> 
+</span><span class="s0">&lt;android.support.v7.widget.CardView 
+    </span><span class="s1">android:layout_width=</span><span class="s2">&quot;40dp&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_height=</span><span class="s2">&quot;40dp&quot;</span><span class="s0"> 
+    </span><span class="s1">android:elevation=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_alignRight=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+    </span><span class="s1">app:cardCornerRadius=</span><span class="s2">&quot;20dp&quot;</span><span class="s0"> 
+    </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/viewEdit&quot;</span><span class="s0"> 
+    </span><span class="s1">android:innerRadius=</span><span class="s2">&quot;0dp&quot;</span><span class="s0"> 
+    </span><span class="s1">android:shape=</span><span class="s2">&quot;ring&quot;</span><span class="s0"> 
+    </span><span class="s1">android:thicknessRatio=</span><span class="s2">&quot;1.9&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_alignBottom=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_marginRight=</span><span class="s2">&quot;5dp&quot;</span><span class="s0"> 
+    </span><span class="s1">android:layout_marginBottom=</span><span class="s2">&quot;5dp&quot;</span><span class="s0"> 
+    </span><span class="s1">tools:ignore=</span><span class="s2">&quot;RtlHardcoded,UnusedAttribute&quot;</span><span class="s0">&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;ImageButton 
+        </span><span class="s1">android:background=</span><span class="s2">&quot;@drawable/edit_profile_button&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;40dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;40dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:src=</span><span class="s2">&quot;@android:drawable/ic_menu_edit&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/imageButtonEditProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_above=</span><span class="s2">&quot;@+id/textViewMobileProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toLeftOf=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toStartOf=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;ContentDescription&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+</span><span class="s0">&lt;/android.support.v7.widget.CardView&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;38dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/editTextMobileNumberProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;15dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewEmailProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingLeft=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;19sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textColor=</span><span class="s2">&quot;@color/black&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/textViewEmailTagProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginLeft=</span><span class="s2">&quot;15dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;RtlHardcoded,RtlSymmetry&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;E-Mail :&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewEmailTagProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;20sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textViewMobileProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;35dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;38dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textColor=</span><span class="s2">&quot;@color/black&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingLeft=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;19dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingRight=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/textViewDOBTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textViewEmailProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;12dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;RtlHardcoded&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;ImageButton 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:src=</span><span class="s2">&quot;@drawable/time&quot;</span><span class="s0"> 
+        </span><span class="s1">android:background=</span><span class="s2">&quot;#00000000&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignBottom=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignRight=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginRight=</span><span class="s2">&quot;25dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/imageButtonCalender&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignTop=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;ContentDescription,RtlHardcoded&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/texViewGenderTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;Gender :&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginRight=</span><span class="s2">&quot;5dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;20sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textViewDOBTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;26dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;38dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;19sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewGender&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/texViewGenderTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textColor=</span><span class="s2">&quot;@color/black&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;15dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingLeft=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;RtlHardcoded,RtlSymmetry&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewCityTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/texViewGenderTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;20dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;City :&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginRight=</span><span class="s2">&quot;30dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;20sp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;AutoCompleteTextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/textViewCityTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginLeft=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textViewGender&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/autoCompleteTextViewCityProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:drawableTint=</span><span class="s2">&quot;@color/gray_color&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingRight=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;RtlHardcoded,RtlSymmetry,TextFields,UnusedAttribute&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;Button 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;200dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;Update Profile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:background=</span><span class="s2">&quot;@color/colorPrimary&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textColor=</span><span class="s2">&quot;@color/white&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/buttonUpdateProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_centerHorizontal=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/autoCompleteTextViewCityProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;20dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_centerHorizontal=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;Change Password ?&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewChangePassword&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;15sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/buttonUpdateProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;20dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;EditText 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:inputType=</span><span class="s2">&quot;number&quot;</span><span class="s0"> 
+        </span><span class="s1">android:drawableTint=</span><span class="s2">&quot;@color/gray_color&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingRight=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/textViewMobileProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/editTextMobileNumberProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;RtlHardcoded,TextFields,UnusedAttribute&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;Mobile :&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;20sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewMobileProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginRight=</span><span class="s2">&quot;15dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;15dp&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;wrap_content&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewDOBTag&quot;</span><span class="s0"> 
+        </span><span class="s1">android:text=</span><span class="s2">&quot;DOB :&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginRight=</span><span class="s2">&quot;30dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;20sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignBaseline=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignBottom=</span><span class="s2">&quot;@+id/textViewDOB&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignParentLeft=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignParentStart=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;38dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;19sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textColor=</span><span class="s2">&quot;@color/black&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingLeft=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewLastNameProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:hint=</span><span class="s2">&quot;Last Name&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignParentRight=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignParentEnd=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_below=</span><span class="s2">&quot;@+id/textViewFirstNameProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toEndOf=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText,RtlHardcoded,RtlSymmetry&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+    </span><span class="s0">&lt;TextView 
+        </span><span class="s1">android:layout_width=</span><span class="s2">&quot;match_parent&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_height=</span><span class="s2">&quot;38dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:gravity=</span><span class="s2">&quot;center|start&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textColor=</span><span class="s2">&quot;@color/black&quot;</span><span class="s0"> 
+        </span><span class="s1">android:paddingLeft=</span><span class="s2">&quot;10dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:textSize=</span><span class="s2">&quot;19sp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:id=</span><span class="s2">&quot;@+id/textViewFirstNameProfile&quot;</span><span class="s0"> 
+        </span><span class="s1">android:hint=</span><span class="s2">&quot;First Name&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_marginTop=</span><span class="s2">&quot;40dp&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignParentRight=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_alignParentEnd=</span><span class="s2">&quot;true&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toRightOf=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">android:layout_toEndOf=</span><span class="s2">&quot;@+id/view2&quot;</span><span class="s0"> 
+        </span><span class="s1">tools:ignore=</span><span class="s2">&quot;HardcodedText,RtlHardcoded,RtlSymmetry&quot; </span><span class="s0">/&gt;</span><span class="s3"> 
+ 
+ 
+ 
+ 
+</span><span class="s0">&lt;/RelativeLayout&gt;</span><span class="s3"> 
+</span><span class="s0">&lt;/ScrollView&gt;</span></pre>
+</body>
+</html>

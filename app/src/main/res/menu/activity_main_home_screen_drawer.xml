@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/home_icon" />
+        <item
+            android:id="@+id/nav_share_stories"
+            android:icon="@drawable/share_symbol"
+            android:title="Shared stories" />
+        <item
+            android:id="@+id/nav_visited_places"
+            android:title="Visited Places"
+            android:icon="@drawable/bookmark_off" />
+        <item
+            android:id="@+id/nav_your_stories"
+            android:title="My Stories"
+            android:icon="@drawable/photo_camera"/>
+
+
+
+        <item
+            android:id="@+id/nav_fav"
+            android:title="My Favourite"
+            android:icon="@drawable/favorite_heart_button_off" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/social"
+            android:title="Profile" />
+
+
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_log_out"
+                android:title="Log Out"
+                android:icon="@drawable/logout" />
+            <item
+                android:id="@+id/nav_about"
+                android:title="About"
+                android:icon="@drawable/about" />
+        </menu>
+    </item>
+
+</menu>

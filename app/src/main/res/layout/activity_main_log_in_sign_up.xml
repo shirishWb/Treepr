@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_of_login_signup"
+    tools:context=".Launcher_screen.MainActivityLogInSignUp">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       tools:ignore="UselessParent">
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Skip"
+           android:textColor="@color/white"
+           android:background="#00000000"
+           android:textSize="20dp"
+           android:layout_alignParentRight="true"
+           android:id="@+id/buttonSkipFirstScreen"
+           tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:gravity="center|top"
+           android:text="Treepr"
+           android:textSize="70dp"
+           android:textColor="@color/treepr_logo"
+           android:id="@+id/textViewTreeprTitleName"
+           android:layout_alignParentTop="true"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="125dp"
+           tools:ignore="HardcodedText,SpUsage" />
+
+       <Button
+           android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
+           android:layout_width="200dp"
+           android:layout_height="wrap_content"
+           android:background="@drawable/oval_shap_button"
+           android:text="Sign Up"
+           android:layout_marginTop="50dp"
+           android:id="@+id/buttonSignUpFirstPage"
+           android:layout_below="@+id/textViewTreeprTitleName"
+           android:layout_centerHorizontal="true"
+           tools:ignore="HardcodedText,UnusedAttribute" />
+
+       <Button
+           android:layout_width="200dp"
+           android:layout_height="wrap_content"
+           android:text="Sign In"
+           android:background="@drawable/oval_shap_button"
+           android:id="@+id/button_signInFirstPage"
+           android:layout_marginTop="50dp"
+           android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
+           android:layout_below="@+id/buttonSignUpFirstPage"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="47dp"
+           tools:ignore="HardcodedText" />
+   </RelativeLayout>
+</ScrollView>
+</FrameLayout>

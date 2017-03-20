@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:background="@drawable/shape_of_dialog_box"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewTitleDialog"
+        android:text="Dialog"
+        android:background="@drawable/email_drawable_sign_in_color"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Gallery"
+        android:drawablePadding="20dp"
+        android:paddingLeft="40dp"
+        android:gravity="left|center"
+        android:id="@+id/textViewFromGallery"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:drawableLeft="@drawable/gallery"/>
+
+    <TextView
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="20dp"
+        android:paddingLeft="40dp"
+        android:gravity="left|center"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:id="@+id/textViewCamera"
+        android:text="Camera"
+        android:drawableLeft="@drawable/camera" />
+
+</LinearLayout>

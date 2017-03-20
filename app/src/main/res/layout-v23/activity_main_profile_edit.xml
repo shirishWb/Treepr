@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_profile_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whitebirdtechnology.treepr.ProfileUpdate.MainProfileEditActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:ignore="ScrollViewSize">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/cardViewProfileImage"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        card_view:cardPreventCornerOverlap="true"
+        android:thicknessRatio="1.9"
+        android:layout_margin="5dp"
+        tools:targetApi="lollipop"
+        card_view:cardBackgroundColor="@color/profileBack"
+        card_view:cardElevation="10dp"
+        card_view:cardCornerRadius="75dp"
+        >
+
+
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageViewProfilePage"
+            android:scaleType="centerCrop"
+            android:src="@drawable/com_facebook_profile_picture_blank_portrait"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true">
+        </ImageView>
+
+    </android.support.v7.widget.CardView>
+<android.support.v7.widget.CardView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_alignRight="@+id/cardViewProfileImage"
+    android:id="@+id/viewEdit"
+    android:innerRadius="0dp"
+    android:shape="ring"
+    android:thicknessRatio="1.9"
+    android:layout_alignBottom="@+id/cardViewProfileImage"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    card_view:cardElevation="10dp"
+    card_view:cardCornerRadius="20dp">
+    <ImageButton
+        android:background="@drawable/edit_profile_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/paint_brush"
+        android:id="@+id/imageButtonEditProfile"
+        android:layout_above="@+id/textViewMobileProfile"
+        android:layout_toLeftOf="@+id/textViewDOB"
+        android:layout_toStartOf="@+id/textViewDOB"/>
+</android.support.v7.widget.CardView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_below="@+id/editTextMobileNumberProfile"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textViewEmailProfile"
+        android:textSize="19sp"
+        android:textColor="@color/black"
+        android:gravity="center|start"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/texViewGenderTag"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-Mail :"
+        android:gravity="center|start"
+        android:id="@+id/textViewEmailTagProfile"
+        android:textSize="20sp"
+        android:layout_below="@+id/textViewMobileProfile"
+        android:layout_marginTop="35dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:id="@+id/textViewDOB"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center|start"
+        android:layout_toRightOf="@+id/texViewGenderTag"
+        android:layout_below="@+id/textViewEmailProfile"
+        android:layout_marginTop="12dp"
+        tools:ignore="RtlHardcoded" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/time"
+        android:background="#00000000"
+        android:layout_alignBottom="@+id/textViewDOB"
+        android:layout_alignRight="@+id/textViewDOB"
+        android:layout_marginRight="25dp"
+        android:id="@+id/imageButtonCalender"
+        android:layout_alignTop="@+id/textViewDOB"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/texViewGenderTag"
+        android:gravity="center|start"
+        android:text="Gender :"
+        android:layout_marginRight="5dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/textViewDOBTag"
+        android:layout_marginTop="26dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:gravity="center|start"
+        android:textSize="19sp"
+        android:textAllCaps="true"
+        android:id="@+id/textViewGender"
+        android:layout_toRightOf="@+id/texViewGenderTag"
+        android:layout_below="@+id/textViewDOB"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewStateTag"
+        android:layout_below="@+id/texViewGenderTag"
+        android:gravity="center|start"
+        android:layout_marginTop="20dp"
+        android:text="State :"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/texViewGenderTag"
+        android:layout_below="@+id/textViewGender"
+        android:gravity="center|start"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:id="@+id/autoCompleteTextViewStateProfile"
+        android:drawableTint="@color/gray_color"
+        tools:ignore="RtlHardcoded,RtlSymmetry,TextFields,UnusedAttribute" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewCityTag"
+        android:layout_below="@+id/autoCompleteTextViewStateProfile"
+        android:gravity="center|start"
+        android:layout_marginTop="15dp"
+        android:text="City :"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/texViewGenderTag"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:imeOptions="actionDone"
+        android:layout_below="@+id/autoCompleteTextViewStateProfile"
+        android:gravity="center|start"
+        android:id="@+id/autoCompleteTextViewCityProfile"
+        android:drawableTint="@color/gray_color"
+        tools:ignore="RtlHardcoded,RtlSymmetry,TextFields,UnusedAttribute" />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Update Profile"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:id="@+id/buttonUpdateProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/autoCompleteTextViewCityProfile"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Change Password ?"
+        android:id="@+id/textViewChangePassword"
+        android:textSize="15sp"
+        android:layout_below="@+id/buttonUpdateProfile"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:inputType="number"
+        android:maxLength="10"
+        android:drawableTint="@color/gray_color"
+        android:layout_toRightOf="@+id/texViewGenderTag"
+        android:id="@+id/editTextMobileNumberProfile"
+        android:layout_below="@+id/cardViewProfileImage"
+        android:layout_marginTop="10dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry,TextFields,UnusedAttribute" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile :"
+        android:textSize="20sp"
+        android:id="@+id/textViewMobileProfile"
+        android:gravity="center|start"
+        android:layout_below="@id/cardViewProfileImage"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDOBTag"
+        android:text="DOB :"
+        android:gravity="center|start"
+        android:layout_marginRight="30dp"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textViewDOB"
+        android:layout_alignBottom="@+id/textViewDOB"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:textSize="19sp"
+        android:textColor="@color/black"
+        android:paddingLeft="10dp"
+        android:gravity="center|start"
+        android:id="@+id/textViewLastNameProfile"
+        android:hint="Last Name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/cardViewProfileImage"
+        android:layout_below="@+id/textViewFirstNameProfile"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/cardViewProfileImage"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:gravity="center|start"
+        android:textColor="@color/black"
+        android:paddingLeft="10dp"
+        android:textSize="19sp"
+        android:id="@+id/textViewFirstNameProfile"
+        android:hint="First Name"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/cardViewProfileImage"
+        android:layout_toEndOf="@+id/cardViewProfileImage"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+
+
+
+</RelativeLayout>
+</ScrollView>

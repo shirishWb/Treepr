@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_All_image"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        card_view:cardElevation="10dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="226dp"
+            android:id="@+id/imageViewVisited" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="160dp"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                tools:ignore="RtlSymmetry">
+
+                <TextView
+                    android:id="@+id/textViewVisitedTitleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="10dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:text="Tiger Spot"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/imageViewPlaceHolder"
+                    android:layout_below="@+id/textViewVisitedTitleName"
+                    android:src="@drawable/placeholder"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center|left"
+                    android:id="@+id/textViewVisitedLocation"
+                    android:paddingLeft="20dp"
+                    android:layout_toRightOf="@+id/imageViewPlaceHolder"
+                    android:layout_below="@+id/textViewVisitedTitleName"
+                    android:text="Lonavala"
+                    android:textSize="16dp"
+                    android:drawablePadding="10dp" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:drawableLeft="@drawable/reply_arrow"
+                    android:text="RE-Plan"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="20dp"
+                    android:id="@+id/buttonVisitedRe_plan"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:textColor="@color/gray_color"
+                    tools:ignore="RtlCompat,RtlSymmetry" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:drawableLeft="@drawable/ic_menu_share"
+                    android:text="SHARE YOUR STORIES"
+                    android:visibility="gone"
+                    android:textColor="@color/gray_color"
+                    android:drawableTint="@color/gray_color"
+                    android:textAlignment="viewStart"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/buttonVisitedShare"
+                    android:drawablePadding="10dp"
+                    tools:ignore="RtlCompat,RtlSymmetry" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

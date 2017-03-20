@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTextView" parent="@android:style/Widget.TextView">
+        <item name="android:fontFamily">apple_chancery.ttf</item>
+    </style>
+</resources>
