@@ -5,7 +5,7 @@ package com.whitebirdtechnology.treepr.Visited_Home_Page;
  */
 
 public class FeedItemVisited {
-    private String stringImagePath,stringCityName,stringImageName,stringPlaceName,stringCityID,stringPlaceID;
+    private String stringImagePath,stringCityName,stringImageName,stringPlaceName,stringCityID,stringPlaceID,stringSpotName,stringSpotId;
     public FeedItemVisited(){
 
     }
@@ -21,6 +21,21 @@ public class FeedItemVisited {
 
     }
 
+    public String getStringSpotId() {
+        return stringSpotId;
+    }
+
+    public void setStringSpotId(String stringSpotId) {
+        this.stringSpotId = stringSpotId;
+    }
+
+    public String getStringSpotName() {
+        return stringSpotName;
+    }
+
+    public void setStringSpotName(String stringSpotName) {
+        this.stringSpotName = stringSpotName;
+    }
 
     public String getStringCityName() {
         return stringCityName;

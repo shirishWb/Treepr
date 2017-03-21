@@ -174,6 +174,7 @@ public class StoriesFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     public static  void StoriesFragment(){
+        FooterVISIBLE = true;
         feedItemStoriesList = new ArrayList<FeedItemStories>();
         for (int j = 0; j < SingltonClsStory.getInstance().arrayListStory.size(); j++) {
             feedItemStoriesList.add(SingltonClsStory.getInstance().arrayListStory.get(j));
@@ -332,7 +333,7 @@ public class StoriesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         bundle.putString("Img", item.getStringImagePath());
                         bundle.putString("ImgProf", item.getStringPrfImgPath());
                         bundle.putString("Name", item.getStringImageName());
-                        bundle.putString("Loc", item.getStringPlaceName() + ", " + item.getStringCityName());
+                        bundle.putString("Loc", item.getStringSpotName() + ", " + item.getStringCityName());
                         bundle.putString("Status", item.getStringStatus());
                         bundle.putString("Comment", item.getStringInfo());
                         bundle.putString("SpotId", null);
@@ -346,7 +347,7 @@ public class StoriesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 });
 
                 if (!TextUtils.isEmpty(item.getStringCityName())) {
-                    holder.textViewLocationName.setText(item.getStringCityName());
+                    holder.textViewLocationName.setText(item.getStringSpotName());
                 } else
                     holder.textViewLocationName.setVisibility(View.GONE);
                 if (!TextUtils.isEmpty(item.getStringInfo())) {

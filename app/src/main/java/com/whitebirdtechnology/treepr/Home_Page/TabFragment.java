@@ -52,12 +52,12 @@ public class TabFragment extends Fragment {
                 if(k==0)
                     SingltonClsVisited.reset();
 
-                if(SingltonClsAll.getInstance().arrayListAll.size()!=0)
-                AllFragment.AllFragment();
-                if(SingltonClsStory.getInstance().arrayListStory.size()!=0)
-                StoriesFragment.StoriesFragment();
-               if(SingltonClsVisited.getInstance().arrayListVisited.size()!=0)
-                VisitedFragment.VisitedFragment();
+              //  if(SingltonClsAll.getInstance().arrayListAll.size()!=0)
+             //   AllFragment.AllFragment();
+            //    if(SingltonClsStory.getInstance().arrayListStory.size()!=0)
+             //   StoriesFragment.StoriesFragment();
+              // if(SingltonClsVisited.getInstance().arrayListVisited.size()!=0)
+               // VisitedFragment.VisitedFragment();
               //  Toast.makeText(getActivity(),"PageScroll"+position,Toast.LENGTH_SHORT).show();
             //    Log.d("PageScroll", String.valueOf(position));
               //  adapter.notifyDataSetChanged();
@@ -77,7 +77,7 @@ public class TabFragment extends Fragment {
                         if(i==0)
                             SingltonClsAll.reset();
                         if(SingltonClsAll.getInstance().arrayListAll.size()!=0)
-                            AllFragment.AllFragment();
+                         //   AllFragment.AllFragment();
                         break;
                     case 1:
                         int y = Integer.parseInt(getString(R.string.contentRefreshCount));
@@ -85,7 +85,7 @@ public class TabFragment extends Fragment {
                         if(j==0)
                             SingltonClsStory.reset();
                            if(SingltonClsStory.getInstance().arrayListStory.size()!=0)
-                        StoriesFragment.StoriesFragment();
+                      //  StoriesFragment.StoriesFragment();
                         break;
                     case 2:
                         int z = Integer.parseInt(getString(R.string.contentRefreshCount));
@@ -93,7 +93,7 @@ public class TabFragment extends Fragment {
                         if(k==0)
                             SingltonClsVisited.reset();
                       if(SingltonClsVisited.getInstance().arrayListVisited.size()!=0)
-                        VisitedFragment.VisitedFragment();
+                      //  VisitedFragment.VisitedFragment();
                         break;
                 }
 

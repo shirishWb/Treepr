@@ -42,6 +42,7 @@ import com.whitebirdtechnology.treepr.SharePreferences.SharePreferences;
 import com.whitebirdtechnology.treepr.Home_Page.MainHomeScreenActivity;
 import com.whitebirdtechnology.treepr.R;
 import com.whitebirdtechnology.treepr.Home_Page.VolleyServices;
+import com.whitebirdtechnology.treepr.Sign_Up.MainActivitySignUp;
 
 import org.json.JSONObject;
 
@@ -72,6 +73,7 @@ public class MainSignInActivity extends AppCompatActivity {
     public static AutoCompleteTextView autoCompleteTextViewCitySignUp,autoCompleteTextViewStateSignUp;
     public static String stringStateNameSignUp;
     TextView textViewFacebookLogIn;
+    TextView textViewSignUp;
     @Override
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,13 @@ public class MainSignInActivity extends AppCompatActivity {
         currentApiVersion = Build.VERSION.SDK_INT;
         sharePreferences = new SharePreferences(this);
         volleyServices = new VolleyServices(this);
+        textViewSignUp = (TextView)findViewById(R.id.textViewSignUp);
+        textViewSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainSignInActivity.this, MainActivitySignUp.class));
+            }
+        });
         textViewFacebookLogIn = (TextView)findViewById(R.id.buttonTopOnFb);
         textViewFacebookLogIn.setOnClickListener(new View.OnClickListener() {
             @Override

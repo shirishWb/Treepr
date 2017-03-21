@@ -91,7 +91,6 @@
                     android:text="SHARE YOUR STORIES"
                     android:visibility="gone"
                     android:textColor="@color/gray_color"
-                    android:drawableTint="@color/gray_color"
                     android:textAlignment="viewStart"
                     android:paddingLeft="10dp"
                     android:id="@+id/buttonVisitedShare"

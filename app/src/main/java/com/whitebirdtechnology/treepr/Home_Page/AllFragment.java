@@ -1,5 +1,6 @@
 package com.whitebirdtechnology.treepr.Home_Page;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -105,7 +106,7 @@ public class AllFragment extends Fragment implements SwipeRefreshLayout.OnRefres
        // stringAllFragmentURL = sharedPreferences.getString("URL", "")+stringAllFragmentURL;
         stringUID  = sharePreferences.getDataFromSharePref(getString(R.string.sharPrfUID));
 
-
+        FooterVISIBLE = true;
         // specify an adapter (see also next example)
        // mAdapter = new MyAdapterAllFragment(getActivity(),feedItemsAll,aBooleanFavorite,aBooleanPlanNow,aBooleanVisited);
 
@@ -123,13 +124,16 @@ public class AllFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
 
     }
-    public static  void AllFragment(){
-
-        feedItemsAll = new ArrayList<FeedItemAll>();
-        for (int j = 0; j < SingltonClsAll.getInstance().arrayListAll.size(); j++) {
-            feedItemsAll.add(SingltonClsAll.getInstance().arrayListAll.get(j));
-        }
-        myAdapterAllFragment.notifyDataSetChanged();
+    public static  void AllFragment(Activity activity){
+        int x= Integer.parseInt(activity.getString(R.string.contentRefreshCount));
+        int k =SingltonClsAll.getInstance().arrayListAll.size();
+            FooterVISIBLE = true;
+            feedItemsAll = new ArrayList<FeedItemAll>();
+            for (int j = 0; j < SingltonClsAll.getInstance().arrayListAll.size(); j++) {
+                feedItemsAll.add(SingltonClsAll.getInstance().arrayListAll.get(j));
+            }
+            myAdapterAllFragment.notifyDataSetChanged();
+        //FooterVISIBLE = ((itemAll * x) + x) <= k;
     }
 
 
@@ -147,8 +151,10 @@ public class AllFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
             int x = Integer.parseInt(getString(R.string.contentRefreshCount));
             int i = feedItemsAll.size() / x;
-        if(i==0)
+        if(i==0) {
             SingltonClsAll.reset();
+          //  mRecyclerView.scrollToPosition(0);
+        }
             if(feedItemsAll.size()%x!=0) {
                 swipeRefreshLayout.setRefreshing(false);
                // FOOTER = 2;
@@ -286,7 +292,7 @@ public class AllFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                         bundle.putString("Img", item.getStringImagePath());
                         bundle.putString("ImgProf", null);
                         bundle.putString("Name", null);
-                        bundle.putString("Loc", item.getStringPlaceName() + ", " + item.getStringCityName());
+                        bundle.putString("Loc", item.getStringImageName()+",\n"+item.getStringPlaceName() + ", " + item.getStringCityName());
                         bundle.putString("Status", null);
                         bundle.putString("Comment", item.getStringInfo());
                         bundle.putString("SpotId", item.getStringSpotId());
@@ -387,7 +393,7 @@ public class AllFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                 para.put(getString(R.string.serviceKeySpotId), item.getStringSpotId());
                                 para.put(getString(R.string.serviceKeyPlaceId), item.getStringPlaceID());
                                 para.put(getString(R.string.serviceKeyCity), item.getStringCityID());
-                                volleyServices.CallVolleyServices(para, getString(R.string.favoriteURL), "");
+                                volleyServices.CallVolleyServices(para, getString(R.string.favoriteURL), "Button");
                                 item.setaBooleanFavorite(true);
                                 holder.imageButtonFavorite.setImageDrawable(getResources().getDrawable(R.drawable.favorite_heart_button_on));
                             }
@@ -409,7 +415,7 @@ public class AllFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                                 para.put(getString(R.string.serviceKeySpotId), item.getStringSpotId());
                                 para.put(getString(R.string.serviceKeyPlaceId), item.getStringPlaceID());
                                 para.put(getString(R.string.serviceKeyCity), item.getStringCityID());
-                                volleyServices.CallVolleyServices(para, getString(R.string.visitedURL), "");
+                                volleyServices.CallVolleyServices(para, getString(R.string.visitedURL), "Button");
                                 item.setaBooleanVisited(true);
                                 holder.buttonVisited.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.bookmark_on),null,null,null);
 

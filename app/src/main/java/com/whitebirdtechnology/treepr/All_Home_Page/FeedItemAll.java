@@ -1,28 +1,13 @@
 package com.whitebirdtechnology.treepr.All_Home_Page;
 
-/**
- * Created by shirish on 14/1/17.
- */
+
 
 public class FeedItemAll {
     private String stringImagePath,stringInfo,stringImageName,stringCityName,stringPlaceName,stringCityID,stringPlaceID,stringSpotId;
     private Boolean aBooleanFavorite,aBooleanVisited;
-    public FeedItemAll(){
 
-    }
 
-    public FeedItemAll(String ImagePath,String CityID,String PlaceID,String PlaceName,String CityName,String Info,String ImageName,Boolean aBooleanFavorite,Boolean aBooleanVisited,String stringSpotId){
-        this.stringImagePath = ImagePath;
-        this.stringInfo = Info;
-        this.stringCityName = CityName;
-        this.stringPlaceID = PlaceID;
-        this.stringCityID =CityID;
-        this.stringSpotId = stringSpotId;
-        this.stringPlaceName = PlaceName;
-        this.stringImageName = ImageName;
-        this.aBooleanFavorite =aBooleanFavorite;
-        this.aBooleanVisited =aBooleanVisited;
-    }
+
 
     public Boolean getaBooleanFavorite() {
         return aBooleanFavorite;

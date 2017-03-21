@@ -5,7 +5,7 @@ package com.whitebirdtechnology.treepr.Stories_Home_page;
  */
 
 public class FeedItemStories {
-    private String stringImagePath,stringCityName,stringInfo,stringImageName,stringPlaceName,stringCityID,stringPlaceID,stringPrfImgPath,stringStatus;
+    private String stringImagePath,stringCityName,stringInfo,stringImageName,stringPlaceName,stringCityID,stringPlaceID,stringPrfImgPath,stringStatus,stringSpotName,stringSpotId;
     public FeedItemStories(){
 
     }
@@ -26,6 +26,22 @@ public class FeedItemStories {
 
     public void setStringPrfImgPath(String stringPrfImgPath) {
         this.stringPrfImgPath = stringPrfImgPath;
+    }
+
+    public String getStringSpotName() {
+        return stringSpotName;
+    }
+
+    public String getStringSpotId() {
+        return stringSpotId;
+    }
+
+    public void setStringSpotName(String stringSpotName) {
+        this.stringSpotName = stringSpotName;
+    }
+
+    public void setStringSpotId(String stringSpotId) {
+        this.stringSpotId = stringSpotId;
     }
 
     public String getStringStatus() {

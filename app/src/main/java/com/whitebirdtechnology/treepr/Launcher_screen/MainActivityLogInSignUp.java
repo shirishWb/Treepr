@@ -132,11 +132,40 @@ public class MainActivityLogInSignUp extends AppCompatActivity {
         buttonSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivityLogInSignUp.this,MainHomeScreenActivity.class));
+                verifyStoragePermissionsCheck(MainActivityLogInSignUp.this);
+
             }
         });
     }
 
+
+    //persmission method.
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public void verifyStoragePermissionsCheck(final Activity activity) {
+        // Check if we have read or write permission
+        int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int cameraPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+        int locationPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.LOCATION_HARDWARE);
+        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+
+            );
+
+        }else {
+            startActivity(new Intent(MainActivityLogInSignUp.this,MainHomeScreenActivity.class));
+        }
+        if(cameraPermission!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISION_CAMERA,REQUEST_EXTERNAL_STORAGE);
+        }
+        if(locationPermission!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISION_LOCATION,REQUEST_EXTERNAL_STORAGE);
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();

@@ -54,6 +54,7 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
         final DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
+                .showImageOnLoading(R.drawable.loading_image)
                 .build();
         activity.runOnUiThread(new Runnable() {
             @Override

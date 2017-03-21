@@ -1,5 +1,6 @@
 package com.whitebirdtechnology.treepr.SplashScreen;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +49,59 @@ public class MainActivitySplashScreen extends AppCompatActivity {
     static Handler handler;
     static Runnable runnable;
     protected ImageLoader imageLoader;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    private  static  String[] PERMISION_CAMERA = {Manifest.permission.CAMERA
+    };
+    private  static  String[] PERMISION_LOCATION = {Manifest.permission.LOCATION_HARDWARE};
+    //persmission method.
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public void verifyStoragePermissions(Activity activity) {
+        // Check if we have read or write permission
+        int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int cameraPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+        int locationPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.LOCATION_HARDWARE);
+        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfUID),null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfCity),null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfMobNo), null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfDOB), null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfFrstName), null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfLstName), null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfGender), null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfEmail), null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfImageSel),null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfCityName),null);
+            sharePreferences.saveDataInShrPref(getString(R.string.sharPrfStateName),null);
+           Toast.makeText(activity,"Please Give Storage permission and then log in",Toast.LENGTH_SHORT).show();
+            Intent mainIntent = new Intent(MainActivitySplashScreen.this, MainActivityLogInSignUp.class);
+            MainActivitySplashScreen.this.startActivity(mainIntent);
+            MainActivitySplashScreen.this.finish();
+            /*
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+
+            );*/
+
+        }else {
+            startActivity(new Intent(MainActivitySplashScreen.this, MainHomeScreenActivity.class));
+            MainActivitySplashScreen.this.finish();
+        }
+        if(cameraPermission!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISION_CAMERA,REQUEST_EXTERNAL_STORAGE);
+        }
+        if(locationPermission!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISION_LOCATION,REQUEST_EXTERNAL_STORAGE);
+        }
+    }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -113,8 +168,7 @@ public class MainActivitySplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 if(!UID.isEmpty()&&!UID.equals("0")){
-                    startActivity(new Intent(MainActivitySplashScreen.this, MainHomeScreenActivity.class));
-                    MainActivitySplashScreen.this.finish();
+                    verifyStoragePermissions(MainActivitySplashScreen.this);
                 }else {
                     Intent mainIntent = new Intent(MainActivitySplashScreen.this, MainActivityLogInSignUp.class);
                     MainActivitySplashScreen.this.startActivity(mainIntent);

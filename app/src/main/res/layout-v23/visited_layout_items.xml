@@ -23,6 +23,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="226dp"
+            android:scaleType="fitXY"
             android:id="@+id/imageViewVisited" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +93,6 @@
                     android:text="SHARE YOUR STORIES"
                     android:visibility="gone"
                     android:textColor="@color/gray_color"
-                    android:drawableTint="@color/gray_color"
                     android:textAlignment="viewStart"
                     android:paddingLeft="10dp"
                     android:id="@+id/buttonVisitedShare"

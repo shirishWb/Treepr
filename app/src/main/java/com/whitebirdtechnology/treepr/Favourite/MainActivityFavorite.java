@@ -52,6 +52,7 @@ public class MainActivityFavorite extends AppCompatActivity implements SwipeRefr
     FrameLayout frameLayout;
     Button buttonLogIn,buttonSignUp;
     String stringUID;
+    TextView textViewNoContents;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
     private static Boolean FooterVISIBLE = true;
@@ -77,6 +78,8 @@ public class MainActivityFavorite extends AppCompatActivity implements SwipeRefr
         feedItemsFav = new ArrayList<>();
         refreshList();
         frameLayout =(FrameLayout)findViewById(R.id.frameLayoutVisited);
+        textViewNoContents = (TextView)findViewById(R.id.textViewNoContents);
+        textViewNoContents.setText("You have no favourite places");
         buttonLogIn = (Button)findViewById(R.id.buttonLogInNoContent);
         buttonSignUp = (Button)findViewById(R.id.buttonSignUpNoContent);
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +106,7 @@ public class MainActivityFavorite extends AppCompatActivity implements SwipeRefr
         mRecyclerView.setAdapter(myAdapterFav);
     }
     public static  void Favorite(){
-
+        FooterVISIBLE = true;
         feedItemsFav = new ArrayList<FeedItemAll>();
         for (int j = 0; j < FavoriteSingletonCls.getInstance().arrayListFav.size(); j++) {
             feedItemsFav.add(FavoriteSingletonCls.getInstance().arrayListFav.get(j));
@@ -339,7 +342,7 @@ public class MainActivityFavorite extends AppCompatActivity implements SwipeRefr
                                 para.put(getString(R.string.serviceKeySpotId), item.getStringSpotId());
                                 para.put(getString(R.string.serviceKeyPlaceId), item.getStringPlaceID());
                                 para.put(getString(R.string.serviceKeyCity), item.getStringCityID());
-                                volleyServices.CallVolleyServices(para, getString(R.string.visitedURL), "");
+                                volleyServices.CallVolleyServices(para, getString(R.string.visitedURL), "Button");
                                 item.setaBooleanVisited(true);
                                 holder.buttonVisited.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.bookmark_on),null,null,null);
                             }

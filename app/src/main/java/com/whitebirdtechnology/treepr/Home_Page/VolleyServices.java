@@ -1,10 +1,15 @@
 package com.whitebirdtechnology.treepr.Home_Page;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -41,17 +46,15 @@ import java.util.Map;
 import static com.whitebirdtechnology.treepr.Favourite.MainActivityFavorite.feedItemsFav;
 import static com.whitebirdtechnology.treepr.YourStory.MainActivityYourStoryPage.feedItemsYourStory;
 
-/**
- * Created by dell on 21/2/17.
- */
+
 
 public class VolleyServices {
-    Activity activity;
-    RequestQueue requestQueue;
-    SharePreferences sharePreferences;
-    ProgressDialog progressDialogs;
-    String key;
-    String successKey,msgKey,nameKey,cityKey,dobKey,profileKey,succValueKey,mobNoKey,genderKey,itemKey,emailKey,uidKey,placeKey,storyKey,visitedKey,imgPathkey,placeIdKey,placeNameKey,imgNameKey,infoKey,cityNameKey,arrayListKey,commentKey,profileImgPathKey,favBoolKey,visitedBoolKey,spotIdKey,stateNamekey,stateCityNameKey,stateIdkey,stringAtvCityLati,stringAtvCityLongi;
+    private Activity activity;
+    private RequestQueue requestQueue;
+    private SharePreferences sharePreferences;
+    private ProgressDialog progressDialogs;
+    private String key;
+    private String successKey,msgKey,nameKey,cityKey,dobKey,profileKey,succValueKey,mobNoKey,genderKey,emailKey,uidKey,placeKey,storyKey,visitedKey,imgPathkey,placeIdKey,placeNameKey,imgNameKey,infoKey,cityNameKey,arrayListKey,commentKey,profileImgPathKey,favBoolKey,visitedBoolKey,spotIdKey,stateNamekey,stateCityNameKey,stateIdkey,stringAtvCityLati,stringAtvCityLongi,spotNameKey;
 
 
     public  VolleyServices(Activity activity){
@@ -68,7 +71,6 @@ public class VolleyServices {
         profileKey  = activity.getString(R.string.serviceKeyProfile);
         succValueKey = activity.getString(R.string.serviceKeySuccessValue);
         genderKey = activity.getString(R.string.serviceKeyGender);
-        itemKey = activity.getString(R.string.serviceKeyItem);
         emailKey = activity.getString(R.string.serviceKeyEmail);
         uidKey  = activity.getString(R.string.serviceKeyUID);
         placeKey  = activity.getString(R.string.serviceKeyPlace);
@@ -91,6 +93,7 @@ public class VolleyServices {
         stateIdkey = activity.getString(R.string.serviceKeyStateId);
         stringAtvCityLati = activity.getString(R.string.serviceKeyCityLati);
         stringAtvCityLongi = activity.getString(R.string.serviceKeyCityLongi);
+        spotNameKey = activity.getString(R.string.serviceKeySpotName);
 
     }
     public void CallVolleyServices(HashMap<String,String> params,String stringURL,String key){
@@ -99,7 +102,7 @@ public class VolleyServices {
         progressDialogs.setIndeterminate(true);
         progressDialogs.setCancelable(false);
         progressDialogs.setProgress(20);
-        if(!key.equals("AllHome")&&!key.equals("StoryHome")&&!key.equals("VisitedHome")&&!key.equals("Splash"))
+        if(!key.equals("AllHome")&&!key.equals("StoryHome")&&!key.equals("VisitedHome")&&!key.equals("Splash")&&!key.equals("Button"))
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -109,12 +112,12 @@ public class VolleyServices {
         this.key = key;
        new BackgrounVolley(params,stringURL,activity).execute();
     }
-    public class BackgrounVolley extends AsyncTask<Void,Void,Void>{
+    private class BackgrounVolley extends AsyncTask<Void,Void,Void>{
         HashMap<String,String> parameters;
         String stringURL;
         Activity activity;
 
-        public BackgrounVolley(HashMap<String,String> params,String stringURL,Activity activity){
+        BackgrounVolley(HashMap<String, String> params, String stringURL, Activity activity){
             this.parameters = params;
             this.stringURL = stringURL;
             this.activity =activity;
@@ -125,20 +128,60 @@ public class VolleyServices {
             return null;
         }
     }
-    public void Volley(final HashMap<String,String> params, final String stringURL, final Activity activity){
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    private  static  String[] PERMISION_CAMERA = {Manifest.permission.CAMERA
+    };
+    private  static  String[] PERMISION_LOCATION = {Manifest.permission.LOCATION_HARDWARE};
+    //persmission method.
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public void verifyStoragePermissions(final Activity activity) {
+        // Check if we have read or write permission
+        int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int cameraPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+        int locationPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.LOCATION_HARDWARE);
+        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(activity,"Please Give Storage Permission",Toast.LENGTH_SHORT).show();
+                    activity.startActivity(new Intent(activity, MainSignInActivity.class));
+                    activity.finish();
+                }
+            });
+
+        }else {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.startActivity(new Intent(activity, MainHomeScreenActivity.class));
+                    activity.finish();
+                }
+            });
+        }
+        if(cameraPermission!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISION_CAMERA,REQUEST_EXTERNAL_STORAGE);
+        }
+        if(locationPermission!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISION_LOCATION,REQUEST_EXTERNAL_STORAGE);
+        }
+    }
+    private void Volley(final HashMap<String, String> params, final String stringURL, final Activity activity){
         String URL = sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfURL))+stringURL;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("resp" + stringURL, response);
-
-
                 if (stringURL.equals(activity.getString(R.string.facebookURL))) {
                     try {
                         JSONObject object = new JSONObject(response);
 
                         String success = object.getString(successKey);
-                        final String stringMSG = object.getString(msgKey);
                         if(success.equals(succValueKey)){
                             String profile = object.getString(profileKey);
                             JSONObject object1 = new JSONObject(profile);
@@ -165,13 +208,13 @@ public class VolleyServices {
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfUID), UID);
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfGender), stringGenderSharPrf);
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfEmail), stringEmailSharPref);
-                            if (!stringMobileNoProfile.isEmpty() && stringMobileNoProfile != "null") {
+                            if (!stringMobileNoProfile.isEmpty() && !stringMobileNoProfile.equals("null")) {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), stringMobileNoProfile);
                             } else
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), null);
 
                             //  editor.putString("ImageProfile", stringImageNameProf);
-                            if (!stringDateOfBirth.isEmpty() && stringDateOfBirth != "0000-00-00") {
+                            if (!stringDateOfBirth.isEmpty() && !stringDateOfBirth.equals("0000-00-00")) {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfDOB), stringDateOfBirth);
 
                             } else
@@ -191,12 +234,8 @@ public class VolleyServices {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfLstName), null);
 
                             }
-                            activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    activity.startActivity(new Intent(activity, MainHomeScreenActivity.class));
-                                }
-                            });
+                            verifyStoragePermissions(activity);
+
 
                             //   spinner.setVisibility(View.GONE);
                         }
@@ -237,13 +276,13 @@ public class VolleyServices {
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfUID), UID);
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfGender), stringGenderSharPrf);
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfEmail), stringEmailSharPref);
-                            if (!stringMobileNoProfile.isEmpty() && stringMobileNoProfile != "null") {
+                            if (!stringMobileNoProfile.isEmpty() && !stringMobileNoProfile.equals("null")) {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), stringMobileNoProfile);
                             } else
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), null);
 
                             //  editor.putString("ImageProfile", stringImageNameProf);
-                            if (!stringDateOfBirth.isEmpty() && stringDateOfBirth != "0000-00-00") {
+                            if (!stringDateOfBirth.isEmpty() && !stringDateOfBirth.equals("0000-00-00")) {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfDOB), stringDateOfBirth);
 
                             } else
@@ -263,12 +302,7 @@ public class VolleyServices {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfLstName), null);
 
                             }
-                            activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    activity.startActivity(new Intent(activity, MainHomeScreenActivity.class));
-                                }
-                            });
+                           verifyStoragePermissions(activity);
                         } else {
                             activity.runOnUiThread(new Runnable() {
                                 @Override
@@ -286,7 +320,7 @@ public class VolleyServices {
                                 MainSignInActivity.CallFillBlankSignUpDialog(activity);
                             }else {
                                 DismissDialog();
-                                HashMap<String,String> param = new HashMap<String, String>();
+                                HashMap<String,String> param = new HashMap<>();
                                 param.put(activity.getString(R.string.serviceKeyName),sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfFbName)));
                                 param.put(activity.getString(R.string.serviceKeyEmail),sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfFbEmail)));
                                 param.put(activity.getString(R.string.serviceKeyGender),sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfFbGender)));
@@ -299,7 +333,7 @@ public class VolleyServices {
 
                         }
                     }catch (Exception e){
-
+                      //  Log.d("error",e.getMessage());
                     }
                 }else if (stringURL.equals(activity.getString(R.string.loginURL))) {
                     try {
@@ -332,13 +366,13 @@ public class VolleyServices {
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfUID), UID);
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfGender), stringGenderSharPrf);
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfEmail), stringEmailSharPref);
-                            if (!stringMobileNoProfile.isEmpty() && stringMobileNoProfile != "null") {
+                            if (!stringMobileNoProfile.isEmpty() && !stringMobileNoProfile.equals("null")) {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), stringMobileNoProfile);
                             } else
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), null);
 
                             //  editor.putString("ImageProfile", stringImageNameProf);
-                            if (!stringDateOfBirth.isEmpty() && stringDateOfBirth != "0000-00-00") {
+                            if (!stringDateOfBirth.isEmpty() && !stringDateOfBirth.equals("0000-00-00")) {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfDOB), stringDateOfBirth);
 
                             } else
@@ -358,12 +392,7 @@ public class VolleyServices {
                                 sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfLstName), null);
 
                             }
-                           activity.runOnUiThread(new Runnable() {
-                               @Override
-                               public void run() {
-                                   activity.startActivity(new Intent(activity, MainHomeScreenActivity.class));
-                               }
-                           });
+                          verifyStoragePermissions(activity);
 
                             //   spinner.setVisibility(View.GONE);
                         } else {
@@ -389,34 +418,81 @@ public class VolleyServices {
                 }else if(stringURL.equals(activity.getString(R.string.signUpURL))){
                     try {
                         JSONObject object = new JSONObject(response);
+                        String stringSuccess = object.getString(successKey);
+                        final String stringMSG = object.getString(msgKey);
+                        if(stringSuccess.equals(succValueKey)) {
+                            String profile = object.getString(profileKey);
+                            JSONObject object1 = new JSONObject(profile);
+                            String stringGenderSharPrf = object1.getString(genderKey);
+                            String stringEmailSharPref = object1.getString(emailKey);
+                            String stringMobileNoProfile = object1.getString(mobNoKey);
+                            String stringDateOfBirth = object1.getString(dobKey);
+                            String stringCityNameSharePrf = object1.getString(cityKey);
+                            String stringStateName = object1.getString(stateNamekey);
+                            String stringImagePath = object1.getString(profileImgPathKey);
+                            sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfImageSel),stringImagePath);
+                            if(stringStateName.isEmpty()||stringStateName.equals("null")){
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfStateName),null);
+                            }else
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfStateName),stringStateName);
+                            String UID = object1.getString(uidKey);
+                            // Writing data to SharedPreferences
 
-                        String stringSuccessPassChange =object.getString(successKey);
-                        final String msg =object.getString(msgKey);
-                        if(stringSuccessPassChange.equals(succValueKey)){
+                            String stringCityName = object1.getString(cityNameKey);
+                            if(stringCityName.isEmpty()||stringCityName.equals("null")){
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfCityName),null);
+                            }else
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfCityName),stringCityName);
+                            sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfUID), UID);
+                            sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfGender), stringGenderSharPrf);
+                            sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfEmail), stringEmailSharPref);
+                            if (!stringMobileNoProfile.isEmpty() && !stringMobileNoProfile.equals("null")) {
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), stringMobileNoProfile);
+                            } else
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), null);
+
+                            //  editor.putString("ImageProfile", stringImageNameProf);
+                            if (!stringDateOfBirth.isEmpty() && !stringDateOfBirth.equals("0000-00-00")) {
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfDOB), stringDateOfBirth);
+
+                            } else
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfDOB), null);
+                            sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfCity), stringCityNameSharePrf);
+                            String[] stringsName = object1.getString(nameKey).split("\\s");
+                            try {
+                                String stringFirstNameSHarPrf = stringsName[0];
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfFrstName), stringFirstNameSHarPrf);
+                            } catch (Exception e) {
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfFrstName), null);
+                            }
+                            try {
+                                String stringLastNameSharPrf = stringsName[1];
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfLstName), stringLastNameSharPrf);
+                            } catch (Exception e) {
+                                sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfLstName), null);
+
+                            }
+                            verifyStoragePermissions(activity);
+
+                            //   spinner.setVisibility(View.GONE);
+                        } else {
                             activity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(activity,msg,Toast.LENGTH_LONG).show();
-                                    activity.finish();
+                                    Toast.makeText(activity, stringMSG, Toast.LENGTH_SHORT).show();
                                 }
                             });
 
 
-
-                        }else {
-
-                            activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(activity,msg,Toast.LENGTH_LONG).show();
-                                }
-                            });
 
                         }
-                       // DismissDialog();
+
+
+
+                        //  DismissDialog();
                     } catch (JSONException e) {
                         e.printStackTrace();
-                      //  DismissDialog();
+                        // DismissDialog();
                     }
                 }else if(stringURL.equals(activity.getString(R.string.passwordChangeURL))){
                     try {
@@ -460,7 +536,6 @@ public class VolleyServices {
                         String stringMobileNoProfile = jsonObjectProfile.getString(mobNoKey);
                         String stringDateOfBirth = jsonObjectProfile.getString(dobKey);
                         String stringCityNameSharePrf = jsonObjectProfile.getString(cityKey);
-                        String UID = jsonObjectProfile.getString(uidKey);
                         String imagePathProf = jsonObjectProfile.getString(profileImgPathKey);
                         String stringCityName = jsonObjectProfile.getString(cityNameKey);
                         if(stringCityName.isEmpty()||stringCityName.equals("null")){
@@ -476,13 +551,13 @@ public class VolleyServices {
                         // Writing data to SharedPreferences
                         sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfGender), stringGenderSharPrf);
                         sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfEmail), stringEmailSharPref);
-                        if (!stringMobileNoProfile.isEmpty() && stringMobileNoProfile != "null") {
+                        if (!stringMobileNoProfile.isEmpty() && !stringMobileNoProfile.equals("null")) {
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), stringMobileNoProfile);
                         } else
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfMobNo), null);
 
 
-                        if (!stringDateOfBirth.isEmpty() && stringDateOfBirth != "0000-00-00") {
+                        if (!stringDateOfBirth.isEmpty() && !stringDateOfBirth.equals("0000-00-00")) {
                             sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfDOB), stringDateOfBirth);
                             // Toast.makeText(MainSignInActivity.this, stringDateOfBirth, Toast.LENGTH_SHORT).show();
                         } else
@@ -566,7 +641,7 @@ public class VolleyServices {
 
                                 SingltonClsAll.getInstance().arrayListAll.add(feedItemAll);
                             }
-                            AllFragment.AllFragment();
+                            AllFragment.AllFragment(activity);
                           //  DismissDialog();
 
                         }else{
@@ -582,7 +657,7 @@ public class VolleyServices {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("errormsg",e.getMessage());
+                      //  Log.d("errormsg",e.getMessage());
                      //   DismissDialog();
                     }
                     try {
@@ -601,6 +676,8 @@ public class VolleyServices {
                                 feedItemStories.setStringInfo(jsonObject.getString(commentKey));
                                 feedItemStories.setStringImageName(jsonObject.getString(nameKey));
                                 feedItemStories.setStringStatus(jsonObject.getString(activity.getString(R.string.serviceKeyStatus)));
+                                feedItemStories.setStringSpotId(jsonObject.getString(spotIdKey));
+                                feedItemStories.setStringSpotName(jsonObject.getString(spotNameKey));
                            //     feedItemStories.setStringCityID(jsonObject.getString(cityKey));
                             //    feedItemStories.setStringPlaceID(jsonObject.getString(placeIdKey));
                                 feedItemStories.setStringPrfImgPath(jsonObject.getString(activity.getString(R.string.serviceKeyProfileImagePath)));
@@ -632,6 +709,8 @@ public class VolleyServices {
                                 FeedItemVisited feedItemVisited = new FeedItemVisited();
                                 feedItemVisited.setStringImagePath(jsonObject.getString(imgPathkey));
                                 feedItemVisited.setStringCityName(jsonObject.getString(cityNameKey));
+                                feedItemVisited.setStringSpotId(jsonObject.getString(spotIdKey));
+                                feedItemVisited.setStringSpotName(jsonObject.getString(spotNameKey));
 
                                 feedItemVisited.setStringPlaceName(jsonObject.getString(placeNameKey));
 
@@ -689,7 +768,7 @@ public class VolleyServices {
 
                                     SingltonClsAll.getInstance().arrayListAll.add(feedItemAll);
                                 }
-                                AllFragment.AllFragment();
+                                AllFragment.AllFragment(activity);
                                 //  DismissDialog();
 
                             } else {
@@ -705,7 +784,7 @@ public class VolleyServices {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.d("errormsg", e.getMessage());
+                         //   Log.d("errormsg", e.getMessage());
                             //   DismissDialog();
                         }
                     }
@@ -732,6 +811,8 @@ public class VolleyServices {
                                     feedItemStories.setStringInfo(jsonObject.getString(commentKey));
                                     feedItemStories.setStringImageName(jsonObject.getString(nameKey));
                                     feedItemStories.setStringStatus(jsonObject.getString(activity.getString(R.string.serviceKeyStatus)));
+                                    feedItemStories.setStringSpotId(jsonObject.getString(spotIdKey));
+                                    feedItemStories.setStringSpotName(jsonObject.getString(spotNameKey));
 //                                    feedItemStories.setStringCityID(jsonObject.getString(cityKey));
  //                                   feedItemStories.setStringPlaceID(jsonObject.getString(placeIdKey));
                                     feedItemStories.setStringPrfImgPath(jsonObject.getString(activity.getString(R.string.serviceKeyProfileImagePath)));
@@ -773,6 +854,8 @@ public class VolleyServices {
                                     feedItemVisited.setStringCityName(jsonObject.getString(cityNameKey));
                                     feedItemVisited.setStringPlaceName(jsonObject.getString(placeNameKey));
 
+                                    feedItemVisited.setStringSpotId(jsonObject.getString(spotIdKey));
+                                    feedItemVisited.setStringSpotName(jsonObject.getString(spotNameKey));
 
                                     SingltonClsVisited.getInstance().arrayListVisited.add(feedItemVisited);
                                 }
@@ -824,7 +907,7 @@ public class VolleyServices {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d("errormsg", e.getMessage());
+                      //  Log.d("errormsg", e.getMessage());
                         //   DismissDialog();
                     }
 
@@ -845,7 +928,7 @@ public class VolleyServices {
                                     MainActivitySignUp.arrayListState.add(i, object1.getString(stateNamekey));
 
                                 }
-                                MainActivitySignUp.adapterStateNames = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainActivitySignUp.arrayListState);
+                                MainActivitySignUp.adapterStateNames = new ArrayAdapter<>(activity,android.R.layout.simple_dropdown_item_1line, MainActivitySignUp.arrayListState);
                                 MainActivitySignUp.autoCompleteTextViewStateSignUp.setAdapter(MainActivitySignUp.adapterStateNames);
 
                             }else {
@@ -858,7 +941,7 @@ public class VolleyServices {
                                     MainActivitySignUp.arrayListCity.add(i, object1.getString(stateCityNameKey));
 
                                 }
-                                MainActivitySignUp.adapterCityNames = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainActivitySignUp.arrayListCity);
+                                MainActivitySignUp.adapterCityNames = new ArrayAdapter<>(activity,android.R.layout.simple_dropdown_item_1line, MainActivitySignUp.arrayListCity);
                                 MainActivitySignUp.autoCompleteTextViewCitySignUp.setAdapter(MainActivitySignUp.adapterCityNames);
 
                             }
@@ -883,7 +966,7 @@ public class VolleyServices {
                                     MainSignInActivity.arrayListState.add(i, object1.getString(stateNamekey));
 
                                 }
-                                MainSignInActivity.adapterStateNames = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainSignInActivity.arrayListState);
+                                MainSignInActivity.adapterStateNames = new ArrayAdapter<>(activity,android.R.layout.simple_dropdown_item_1line, MainSignInActivity.arrayListState);
                                 MainSignInActivity.autoCompleteTextViewStateSignUp.setAdapter(MainSignInActivity.adapterStateNames);
 
                             }else {
@@ -896,7 +979,7 @@ public class VolleyServices {
                                     MainSignInActivity.arrayListCity.add(i, object1.getString(stateCityNameKey));
 
                                 }
-                                MainSignInActivity.adapterCityNames = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainSignInActivity.arrayListCity);
+                                MainSignInActivity.adapterCityNames = new ArrayAdapter<>(activity,android.R.layout.simple_dropdown_item_1line, MainSignInActivity.arrayListCity);
                                 MainSignInActivity.autoCompleteTextViewCitySignUp.setAdapter(MainSignInActivity.adapterCityNames);
 
                             }
@@ -923,7 +1006,7 @@ public class VolleyServices {
                                     MainProfileEditActivity.arrayListState.add(i, object1.getString(stateNamekey));
 
                                 }
-                                MainProfileEditActivity.adapterStateNames = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainProfileEditActivity.arrayListState);
+                                MainProfileEditActivity.adapterStateNames = new ArrayAdapter<>(activity,android.R.layout.simple_dropdown_item_1line, MainProfileEditActivity.arrayListState);
                                 MainProfileEditActivity.autoCompleteTextViewStateNameProfile.setAdapter(MainProfileEditActivity.adapterStateNames);
                                 final String s =sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfStateName));
                                 if(MainProfileEditActivity.arrayListState.contains(s)){
@@ -935,7 +1018,7 @@ public class VolleyServices {
                                     });
 
 
-                                    HashMap<String,String> parameters = new HashMap<String, String>();
+                                    HashMap<String,String> parameters = new HashMap<>();
                                     parameters.put(activity.getString(R.string.serviceKeyStateId),MainProfileEditActivity.hashMapState.get(activity.getString(R.string.sharPrfStateName)));
                                     CallVolleyServices(parameters,activity.getString(R.string.stateURL),"Profile");
 
@@ -950,7 +1033,7 @@ public class VolleyServices {
                                     MainProfileEditActivity.arrayListCity.add(i, object1.getString(stateCityNameKey));
 
                                 }
-                                MainProfileEditActivity.adapterCityNames = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainProfileEditActivity.arrayListCity);
+                                MainProfileEditActivity.adapterCityNames = new ArrayAdapter<>(activity,android.R.layout.simple_dropdown_item_1line, MainProfileEditActivity.arrayListCity);
                                 MainProfileEditActivity.autoCompleteTextViewCityNameProfile.setAdapter(MainProfileEditActivity.adapterCityNames);
                                 final String c =sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfCityName));
                                 if(MainProfileEditActivity.arrayListCity.contains(c)){
@@ -1009,48 +1092,55 @@ public class VolleyServices {
                         String success = object.getString(successKey);
                         String value = object.getString(activity.getString(R.string.serviceKeyStateValue));
                         if(success.equals(succValueKey)) {
-                            if (value.equals("1")) {
-                                JSONArray jsonArray = object.getJSONArray(activity.getString(R.string.serviceKeyStateCity));
-                                MainActivityYourStories.hashMapCityId = new HashMap<>();
-                                MainActivityYourStories.arrayListCity = new ArrayList<>();
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject object1 = jsonArray.getJSONObject(i);
-                                    MainActivityYourStories.hashMapCityId.put(object1.getString(cityNameKey), object1.getString(cityKey));
-                                    MainActivityYourStories.arrayListCity.add(i, object1.getString(cityNameKey));
-
-                                }
-                                MainActivityYourStories.adapterCity = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainActivityYourStories.arrayListCity);
-                                MainActivityYourStories.autoCompleteTextViewCity.setAdapter(MainActivityYourStories.adapterCity);
-
-
-                            }else if(value.equals("2")){
-                                {
-                                    JSONArray jsonArray = object.getJSONArray(activity.getString(R.string.serviceKeyPlace));
-                                    MainActivityYourStories.hashMapPlaceId = new HashMap<>();
-                                    MainActivityYourStories.arrayListPlace = new ArrayList<>();
+                            switch (value) {
+                                case "1": {
+                                    JSONArray jsonArray = object.getJSONArray(activity.getString(R.string.serviceKeyStateCity));
+                                    MainActivityYourStories.hashMapCityId = new HashMap<>();
+                                    MainActivityYourStories.arrayListCity = new ArrayList<>();
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject object1 = jsonArray.getJSONObject(i);
-                                        MainActivityYourStories.hashMapPlaceId.put(object1.getString(placeNameKey), object1.getString(placeIdKey));
-                                        MainActivityYourStories.arrayListPlace.add(i, object1.getString(placeNameKey));
+                                        MainActivityYourStories.hashMapCityId.put(object1.getString(cityNameKey), object1.getString(cityKey));
+                                        MainActivityYourStories.arrayListCity.add(i, object1.getString(cityNameKey));
 
                                     }
-                                    MainActivityYourStories.adapterPlace = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainActivityYourStories.arrayListPlace);
-                                    MainActivityYourStories.autoCompletetextViewPlace.setAdapter(MainActivityYourStories.adapterPlace);
+                                    MainActivityYourStories.adapterCity = new ArrayAdapter<>(activity, android.R.layout.simple_dropdown_item_1line, MainActivityYourStories.arrayListCity);
+                                    MainActivityYourStories.autoCompleteTextViewCity.setAdapter(MainActivityYourStories.adapterCity);
 
+
+                                    break;
                                 }
-                            }else {
-                                JSONArray jsonArray = object.getJSONArray(activity.getString(R.string.serviceKeyYourStorySpot));
-                                MainActivityYourStories.hashMapSpotId = new HashMap<>();
-                                MainActivityYourStories.arrayListSpot = new ArrayList<>();
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject object1 = jsonArray.getJSONObject(i);
-                                    MainActivityYourStories.hashMapSpotId.put(object1.getString(activity.getString(R.string.serviceKeySpotName)), object1.getString(spotIdKey));
-                                    MainActivityYourStories.arrayListSpot.add(i, object1.getString(activity.getString(R.string.serviceKeySpotName)));
+                                case "2": {
+                                    {
+                                        JSONArray jsonArray = object.getJSONArray(activity.getString(R.string.serviceKeyPlace));
+                                        MainActivityYourStories.hashMapPlaceId = new HashMap<>();
+                                        MainActivityYourStories.arrayListPlace = new ArrayList<>();
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject object1 = jsonArray.getJSONObject(i);
+                                            MainActivityYourStories.hashMapPlaceId.put(object1.getString(placeNameKey), object1.getString(placeIdKey));
+                                            MainActivityYourStories.arrayListPlace.add(i, object1.getString(placeNameKey));
 
+                                        }
+                                        MainActivityYourStories.adapterPlace = new ArrayAdapter<>(activity, android.R.layout.simple_dropdown_item_1line, MainActivityYourStories.arrayListPlace);
+                                        MainActivityYourStories.autoCompletetextViewPlace.setAdapter(MainActivityYourStories.adapterPlace);
+
+                                    }
+                                    break;
                                 }
-                                MainActivityYourStories.adapterSpot = new ArrayAdapter<String>(activity,android.R.layout.simple_dropdown_item_1line, MainActivityYourStories.arrayListSpot);
-                                MainActivityYourStories.autoCompletetextViewSpot.setAdapter(MainActivityYourStories.adapterSpot);
+                                default: {
+                                    JSONArray jsonArray = object.getJSONArray(activity.getString(R.string.serviceKeyYourStorySpot));
+                                    MainActivityYourStories.hashMapSpotId = new HashMap<>();
+                                    MainActivityYourStories.arrayListSpot = new ArrayList<>();
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject object1 = jsonArray.getJSONObject(i);
+                                        MainActivityYourStories.hashMapSpotId.put(object1.getString(activity.getString(R.string.serviceKeySpotName)), object1.getString(spotIdKey));
+                                        MainActivityYourStories.arrayListSpot.add(i, object1.getString(activity.getString(R.string.serviceKeySpotName)));
 
+                                    }
+                                    MainActivityYourStories.adapterSpot = new ArrayAdapter<>(activity, android.R.layout.simple_dropdown_item_1line, MainActivityYourStories.arrayListSpot);
+                                    MainActivityYourStories.autoCompletetextViewSpot.setAdapter(MainActivityYourStories.adapterSpot);
+
+                                    break;
+                                }
                             }
                         }
 
@@ -1098,7 +1188,7 @@ public class VolleyServices {
                             }
 
                     }catch (Exception e){
-
+                     //   Log.d("error",e.getMessage());
                     }
                 }else if(stringURL.equals(activity.getString(R.string.shareStoryURL))){
                     try {
@@ -1147,7 +1237,7 @@ public class VolleyServices {
                         });
                     }
                     }catch (Exception e){
-
+                       // Log.d("error",e.getMessage());
                     }
                 }
                 DismissDialog();
@@ -1172,7 +1262,7 @@ public class VolleyServices {
         };requestQueue.add(stringRequest);
     }
 
-    public void DismissDialog(){
+    private void DismissDialog(){
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

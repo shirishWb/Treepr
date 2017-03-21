@@ -4,12 +4,14 @@ package com.whitebirdtechnology.treepr.Home_Page;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -66,6 +68,7 @@ public class MainHomeScreenActivity extends AppCompatActivity
     public static int itemAll,itemStory,itemVisited;
     public static TextView textViewUserName,textViewUserEmail;
     public static ImageView imageViewUserProfile;
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         setTitle(WidthOfScreen()+"Home");
@@ -116,6 +119,12 @@ public class MainHomeScreenActivity extends AppCompatActivity
 
        // new SendTask("0",this).execute();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        menus = navigationView.getMenu();
+        String UID= sharePreferences.getDataFromSharePref(getString(R.string.sharPrfUID));
+        if(UID.isEmpty()||UID.equals("0")){
+            MenuItem item = menus.findItem(R.id.nav_log_out);
+            item.setVisible(false);
+        }
         navigationView.setNavigationItemSelectedListener(this);
         View view = navigationView.getHeaderView(0);
         textViewUserName = (TextView)view.findViewById(R.id.textViewUserName);
@@ -136,7 +145,8 @@ public class MainHomeScreenActivity extends AppCompatActivity
         String stringEmail = sharePreferences.getDataFromSharePref(getString(R.string.sharPrfEmail));
         String stringFirstName = sharePreferences.getDataFromSharePref(getString(R.string.sharPrfFrstName));
         String stringLastName = sharePreferences.getDataFromSharePref(getString(R.string.sharPrfLstName));
-
+        if(stringFirstName.isEmpty())
+            stringFirstName = "Guest User";
         textViewUserEmail.setText(stringEmail);
         textViewUserName.setText(stringFirstName+" "+stringLastName);
         HashMap<String,String> para = new HashMap<>();
@@ -197,9 +207,12 @@ public class MainHomeScreenActivity extends AppCompatActivity
         sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfActiveCityLati),hashMapAcivCtyLati.get(stringCity));
         sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfActiveCityLongi),hashMapAcivCtyLongi.get(stringCity));
         sharePreferences.saveDataInShrPref(activity.getString(R.string.sharPrfUID),UID);
-        params.put(activity.getString(R.string.serviceKeyItem), String.valueOf(itemAll));
-        params.put(activity.getString(R.string.serviceKeyItem1),String.valueOf(itemStory));
-        params.put(activity.getString(R.string.serviceKeyItem2),String.valueOf(itemVisited));
+        params.put(activity.getString(R.string.serviceKeyItem), String.valueOf(0));
+        params.put(activity.getString(R.string.serviceKeyItem1),String.valueOf(0));
+        params.put(activity.getString(R.string.serviceKeyItem2),String.valueOf(0));
+        itemAll = 0;
+        itemStory = 0;
+        itemVisited = 0;
         params.put(activity.getString(R.string.serviceKeyCityLati),sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfActiveCityLati)));
         params.put(activity.getString(R.string.serviceKeyCityLongi),sharePreferences.getDataFromSharePref(activity.getString(R.string.sharPrfActiveCityLongi)));
         volleyServices.CallVolleyServices(params,stringURL,"");
@@ -212,11 +225,27 @@ public class MainHomeScreenActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
-            Intent a = new Intent(Intent.ACTION_MAIN);
-            a.addCategory(Intent.CATEGORY_HOME);
-            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(a);
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
+
+
 
             }
 
@@ -227,31 +256,6 @@ public class MainHomeScreenActivity extends AppCompatActivity
         MenuInflater inflater = getMenuInflater();
         menus = menu;
         inflater.inflate(R.menu.search_home_page, menus);
-
-
-/*
-            spinner = (Spinner) MenuItemCompat.getActionView(item);
-
-            adapter = new ArrayAdapter<String>(this,
-                     android.R.layout.simple_spinner_item,arrayListActiveCity);
-
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            spinner.setAdapter(adapter);*/
-
-        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String stringCity = hashMapActiveCity.get(spinner.getSelectedItem().toString());
-                CallHomeServiceCityPass(MainHomeScreenActivity.this,stringCity);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
         return true;
     }
 
@@ -328,6 +332,16 @@ public class MainHomeScreenActivity extends AppCompatActivity
         } else if (id == R.id.nav_home) {
             TabFragment.viewPager.setCurrentItem(0);
         }  else if (id == R.id.nav_share) {
+            String boby = "Hey Checkout Treepr App for plan Trip and look for nearest places\n" +
+                    "https://play.google.com/store/apps/developer?id=Whitebird+Technology" ;
+            //
+            Intent sendIntent = new Intent(Intent.ACTION_SEND);
+            sendIntent.setType("text/plain");
+            String shareBody = boby;
+            String shareSub = "Share Treepr";
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sendIntent, "Share Using"));
 
         } else if (id == R.id.nav_log_out) {
             String UID= sharePreferences.getDataFromSharePref(getString(R.string.sharPrfUID));
@@ -427,6 +441,24 @@ public class MainHomeScreenActivity extends AppCompatActivity
         startActivity(intent);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final String stringImageURL = sharePreferences.getDataFromSharePref(getString(R.string.sharPrfImageSel));
+        if(!stringImageURL.isEmpty()) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    new ImageDownloaderTask(imageViewUserProfile, stringImageURL, MainHomeScreenActivity.this).execute();
+
+                }
+            });
+            thread.start();
+        }
+    }
+
     private void selectImage() {
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
@@ -518,6 +550,9 @@ public class CityAdepter  extends BaseAdapter{
         return v;
     }
 }
+
+
+
 
 
 }

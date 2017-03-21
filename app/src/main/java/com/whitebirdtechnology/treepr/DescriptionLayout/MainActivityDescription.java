@@ -2,18 +2,11 @@ package com.whitebirdtechnology.treepr.DescriptionLayout;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,7 +52,10 @@ public class MainActivityDescription extends AppCompatActivity {
             collapsingToolbarLayout.setPadding(0, 0, 0, 0);
         }
         Bundle bundle = getIntent().getExtras().getBundle("Bundle");
-        final String stringImgFull = bundle.getString("Img");
+        String stringImgFull = null;
+        if (bundle != null) {
+            stringImgFull = bundle.getString("Img");
+        }
         String stringImgProf = bundle.getString("ImgProf");
         String stringName = bundle.getString("Name");
         final String stringLoc = bundle.getString("Loc");
@@ -73,10 +69,11 @@ public class MainActivityDescription extends AppCompatActivity {
 
 
         if(!stringImgFull.isEmpty()) {
+            final String finalStringImgFull = stringImgFull;
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    new ImageDownloaderTask(imageViewFullDescriptionPage, stringImgFull, MainActivityDescription.this).execute();
+                    new ImageDownloaderTask(imageViewFullDescriptionPage, finalStringImgFull, MainActivityDescription.this).execute();
                 }
             });
             thread.start();
@@ -180,7 +177,7 @@ public class MainActivityDescription extends AppCompatActivity {
                             para.put(getString(R.string.serviceKeySpotId),stringSpotId);
                             para.put(getString(R.string.serviceKeyPlaceId),stringPlaceId);
                             para.put(getString(R.string.serviceKeyCity),stringCityId);
-                            volleyServices.CallVolleyServices(para,getString(R.string.visitedURL),"");
+                            volleyServices.CallVolleyServices(para,getString(R.string.visitedURL),"Button");
                             buttonVisited.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.bookmark_on),null,null,null);
                         }
                 }

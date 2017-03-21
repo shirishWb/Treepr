@@ -86,7 +86,7 @@
         <activity
             android:name=".ProfileUpdate.MainProfileEditActivity"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustPan|stateAlwaysVisible"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity android:name=".Home_Page.MainActivityYourStories"
             android:windowSoftInputMode="adjustPan|stateAlwaysVisible"/>

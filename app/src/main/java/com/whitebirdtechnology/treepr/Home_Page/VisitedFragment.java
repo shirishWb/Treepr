@@ -50,6 +50,7 @@ public class VisitedFragment extends Fragment implements SwipeRefreshLayout.OnRe
     VolleyServices volleyServices;
     Button buttonLogIn,buttonSignUp;
     String stringUID;
+    TextView textViewNoContents;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
     private static Boolean FooterVISIBLE = true;
@@ -64,6 +65,8 @@ public class VisitedFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout = (SwipeRefreshLayout) rootViewVisited.findViewById(R.id.refreshVisited);
         mRecyclerViewVisited = (RecyclerView) rootViewVisited.findViewById(R.id.my_recycler_view_visited);
         frameLayout =(FrameLayout)rootViewVisited.findViewById(R.id.frameLayoutVisited);
+        textViewNoContents = (TextView)rootViewVisited.findViewById(R.id.textViewNoContents);
+        textViewNoContents.setText("You haven't visit any place yet");
         volleyServices = new VolleyServices(getActivity());
         swipeRefreshLayout.setOnRefreshListener(this);
         // use this setting to improve performance if you know that changes
@@ -103,7 +106,7 @@ public class VisitedFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     public static  void VisitedFragment(){
-
+        FooterVISIBLE = true;
         feedItemVisitedList = new ArrayList<FeedItemVisited>();
         for (int j = 0; j < SingltonClsVisited.getInstance().arrayListVisited.size(); j++) {
             feedItemVisitedList.add(SingltonClsVisited.getInstance().arrayListVisited.get(j));
@@ -260,13 +263,13 @@ public class VisitedFragment extends Fragment implements SwipeRefreshLayout.OnRe
                     return;
 
                 final FeedItemVisited item = feedItemVisitedList.get(position);
-                if (!TextUtils.isEmpty(item.getStringCityName())) {
-                    holder.textViewLocationName.setText(item.getStringCityName());
+                if (!TextUtils.isEmpty(item.getStringCityName())&&!TextUtils.isEmpty(item.getStringPlaceName())) {
+                    holder.textViewLocationName.setText(item.getStringPlaceName()+", "+item.getStringCityName());
                 } else
                     holder.textViewLocationName.setVisibility(View.GONE);
 
-                if (!TextUtils.isEmpty(item.getStringPlaceName())) {
-                    holder.textViewTitleName.setText(item.getStringPlaceName());
+                if (!TextUtils.isEmpty(item.getStringSpotName())) {
+                    holder.textViewTitleName.setText(item.getStringSpotName());
                 } else holder.textViewTitleName.setVisibility(View.GONE);
 
                 if (item.getStringImagePath() != null) {

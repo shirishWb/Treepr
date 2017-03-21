@@ -49,6 +49,7 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
     VolleyServices volleyServices;
     String stringUID;
     FrameLayout frameLayout;
+    TextView textViewNoContents;
     Button buttonLogIn,buttonSignUp;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
@@ -73,6 +74,8 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
         feedItemsYourStory = new ArrayList<>();
         refreshList();
         frameLayout =(FrameLayout)findViewById(R.id.frameLayoutVisited);
+        textViewNoContents = (TextView)findViewById(R.id.textViewNoContents);
+        textViewNoContents.setText("You haven't create any stories yet");
         buttonLogIn = (Button)findViewById(R.id.buttonLogInNoContent);
         buttonSignUp = (Button)findViewById(R.id.buttonSignUpNoContent);
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +105,7 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
     }
 
     public static  void YourStories(Activity activity){
-
+        FooterVISIBLE = true;
         feedItemsYourStory = new ArrayList<FeedItemStories>();
         for (int j = 0; j < YourStorySingltonCls.getInstance().arrayListYourStory.size(); j++) {
             feedItemsYourStory.add(YourStorySingltonCls.getInstance().arrayListYourStory.get(j));
@@ -261,7 +264,7 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
                             bundle.putString("Img", item.getStringImagePath());
                             bundle.putString("ImgProf", item.getStringPrfImgPath());
                             bundle.putString("Name", item.getStringImageName());
-                            bundle.putString("Loc", item.getStringPlaceName() + ", " + item.getStringCityName());
+                            bundle.putString("Loc", item.getStringSpotName()+",\n"+item.getStringPlaceName() + ", " + item.getStringCityName());
                             bundle.putString("Status", item.getStringStatus());
                             bundle.putString("Comment", item.getStringInfo());
                             bundle.putString("SpotId", null);

@@ -20,38 +20,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/frameLayoutVisited">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-                <TextView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="No Contents"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:gravity="center"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Log in"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/buttonLogInNoContent"
-                    android:background="@drawable/oval_shap_button"
-                    android:layout_marginBottom="50dp"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/buttonLogInNoContent"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"
-                    android:text="Sign Up"
-                    android:id="@+id/buttonSignUpNoContent"
-                    android:textColor="@color/colorPrimary"
-                    android:background="@drawable/oval_shap_button"
-                    />
-        </RelativeLayout>
+                    android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/no_content"
+                            android:id="@+id/imageViewNoContent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No Contents"
+                            android:id="@+id/textViewNoContents"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/imageViewNoContent"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:gravity="center"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Log in"
+                            android:textColor="@color/white"
+                            android:layout_below="@+id/textViewNoContents"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/buttonLogInNoContent"
+                            android:background="@drawable/oval_shap_button"
+                            android:layout_marginTop="10dp"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/buttonLogInNoContent"
+                            android:layout_centerHorizontal="true"
+                            android:text="Sign Up"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/buttonSignUpNoContent"
+                            android:textColor="@color/white"
+                            android:background="@drawable/oval_shap_button"
+                            />
+                </RelativeLayout>
         </FrameLayout>
 </RelativeLayout>
 
