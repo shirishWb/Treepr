@@ -1,38 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
-    android:orientation="vertical"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_All_title"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        card_view:cardElevation="10dp"
-        android:layout_height="80dp"
-        card_view:cardCornerRadius="4dp">
+        android:elevation="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        app:cardCornerRadius="4dip">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_sign_up">
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                card_view:cardElevation="1dp"
+                android:elevation="20dp"
+                android:layout_margin="4dip"
                 android:id="@+id/view_profile_in_stories"
                 android:innerRadius="0dp"
                 android:shape="ring"
-                card_view:cardBackgroundColor="@color/transparent"
-                card_view:cardPreventCornerOverlap="false"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="35dp"
+                app:cardCornerRadius="35dp"
                 android:thicknessRatio="1.9">
                 <ImageView
                     android:layout_width="70dp"
@@ -48,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/view_profile_in_stories"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:text="Rohit Patne"
                 android:textColor="@color/black"
                 android:id="@+id/textViewNameStories"
@@ -57,7 +52,8 @@
                 />
             <ImageView
                 android:layout_width="20dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:id="@+id/imageViewPlaceHolder"
                 android:layout_toRightOf="@+id/textViewNameStories"
@@ -68,7 +64,7 @@
                 android:gravity="center"
                 android:id="@+id/textViewStoriesLocation"
                 android:text="Lonavala"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="2dp"
                 android:textSize="16dp"
                 android:layout_toRightOf="@+id/imageViewPlaceHolder"
@@ -80,7 +76,8 @@
                 android:maxLines="1"
                 android:layout_marginBottom="10dp"
                 android:ellipsize="end"
-                android:layout_marginTop="35dp"
+                android:layout_below="@+id/imageViewPlaceHolder"
+                android:layout_marginTop="10dp"
                 android:scrollHorizontally="true"
                 android:textColor="@color/gray_color"
                 android:id="@+id/textViewMsgStories"
@@ -91,16 +88,15 @@
         </RelativeLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_All_image"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        card_view:cardElevation="10dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp">
+        android:elevation="35dp"
+        app:cardCornerRadius="4dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

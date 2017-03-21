@@ -1,12 +1,20 @@
 package com.whitebirdtechnology.treepr.YourStory;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -26,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whitebirdtechnology.treepr.DescriptionLayout.MainActivityDescription;
+import com.whitebirdtechnology.treepr.Home_Page.MainActivityYourStories;
 import com.whitebirdtechnology.treepr.Log_In.MainSignInActivity;
 import com.whitebirdtechnology.treepr.R;
 import com.whitebirdtechnology.treepr.SharePreferences.SharePreferences;
@@ -34,6 +43,7 @@ import com.whitebirdtechnology.treepr.Stories_Home_page.FeedItemStories;
 import com.whitebirdtechnology.treepr.volley.ImageDownloaderTask;
 import com.whitebirdtechnology.treepr.Home_Page.VolleyServices;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +61,7 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
     FrameLayout frameLayout;
     TextView textViewNoContents;
     Button buttonLogIn,buttonSignUp;
+    Dialog alertDialogDismiss;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
     private static Boolean FooterVISIBLE = true;
@@ -61,7 +72,20 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
         setTitle("My Stories");
         setContentView(R.layout.activity_main_your_story_page);
 
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String UID= sharePreferences.getDataFromSharePref(getString(R.string.sharPrfUID));
+                if(UID.isEmpty()||UID.equals("0")) {
+                    Toast.makeText(MainActivityYourStoryPage.this,"Please Login",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                selectImage();
+                //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //  Toast.makeText(MainHomeScreenActivity.this,"float",Toast.LENGTH_LONG).show();
+            }
+        });
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_your_story);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view_YourStory);
@@ -264,7 +288,8 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
                             bundle.putString("Img", item.getStringImagePath());
                             bundle.putString("ImgProf", item.getStringPrfImgPath());
                             bundle.putString("Name", item.getStringImageName());
-                            bundle.putString("Loc", item.getStringSpotName()+",\n"+item.getStringPlaceName() + ", " + item.getStringCityName());
+                            bundle.putString("Loc", item.getStringPlaceName() + ", " + item.getStringCityName());
+                            bundle.putString("SpotName",item.getStringSpotName());
                             bundle.putString("Status", item.getStringStatus());
                             bundle.putString("Comment", item.getStringInfo());
                             bundle.putString("SpotId", null);
@@ -278,7 +303,7 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
                     });
 
                     if (!TextUtils.isEmpty(item.getStringCityName())) {
-                        holder.textViewLocationName.setText(item.getStringCityName());
+                        holder.textViewLocationName.setText( item.getStringSpotName()+", "+item.getStringPlaceName() + ", " +item.getStringCityName());
                     } else
                         holder.textViewLocationName.setVisibility(View.GONE);
                     if (!TextUtils.isEmpty(item.getStringInfo())) {
@@ -348,7 +373,10 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
                                 }catch (Exception e){
                                     Lname = "";
                                 }
-                                String boby = "Hey Treepr Planed For You With Your Friend :\n" +Fname+" "+Lname  + "\nHe Want To visit With You On Place:\n" + item.getStringPlaceName() + "\nAt City:" + item.getStringCityName();
+                                String boby = "Hey,\n" +
+                                        "Your friend " +Fname+" "+Lname  + "\nis planning to visit " +item.getStringSpotName()+", " + item.getStringPlaceName() + "\nat city:" + item.getStringCityName()+" with you\n" +
+                                        "From Treepr" +
+                                        getString(R.string.WbPlayStoreLink);
                                 //
                                 Intent sendIntent = new Intent(Intent.ACTION_SEND);
                                 sendIntent.setType("text/plain");
@@ -382,4 +410,97 @@ public class MainActivityYourStoryPage extends AppCompatActivity implements Swip
             }
         }
 
+    private void selectImage() {
+        final CharSequence[] items = { "Take Photo", "Choose from Library",
+                "Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivityYourStoryPage.this);
+        LayoutInflater layoutInflater = getLayoutInflater();
+        @SuppressLint("InflateParams") View view = layoutInflater.inflate(R.layout.choose_profile_pick_dialog,null);
+        builder.setView(view);
+        alertDialogDismiss = builder.create();
+        alertDialogDismiss.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        TextView textViewTitle = (TextView)view.findViewById(R.id.textViewTitleDialog);
+        textViewTitle.setText("Add Your Story");
+        TextView textViewFromGallery = (TextView) view.findViewById(R.id.textViewFromGallery);
+        TextView textViewCamera = (TextView) view.findViewById(R.id.textViewCamera);
+        textViewCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogDismiss.dismiss();
+
+                String path = Environment.getExternalStorageDirectory()+ "/Images";
+
+                File imgFile = new File(path);
+                if (!imgFile.exists()) {
+                    File wallpaperDirectory = new File("/sdcard/Images/");
+                    wallpaperDirectory.mkdirs();
+                }
+                File file = new File(new File("/sdcard/Images/"), "one.jpg");
+                Uri uri = Uri.fromFile(file);
+                try {
+                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                    takePicture.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                    startActivityForResult(takePicture, 0);
+                }catch (Exception e){
+                    Toast.makeText(MainActivityYourStoryPage.this,"Please Check Permission",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        textViewFromGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogDismiss.dismiss();
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto, 1);
+            }
+        });
+        alertDialogDismiss.show();
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case 0:
+                if(resultCode == RESULT_OK){
+                    //   Uri uri =data.getData();
+                    //  Toast.makeText(MainHomeScreenActivity.this,uri.toString(),Toast.LENGTH_LONG).show();
+                    // Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    // StartImageCropActivity(null,photo,"0");
+                    String path = Environment.getExternalStorageDirectory()+ "/Images";
+
+                    File imgFile = new File(path);
+                    if (!imgFile.exists()) {
+                        File wallpaperDirectory = new File("/sdcard/Images/");
+                        wallpaperDirectory.mkdirs();
+                    }
+                    File file = new File(new File("/sdcard/Images/"), "one.jpg");
+                    Uri uri = Uri.fromFile(file);
+                    StartImageCropActivity(uri);
+                }
+
+                break;
+            case 1:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = data.getData();
+
+                    StartImageCropActivity(selectedImage);
+                }
+                break;
+        }
+    }
+    public void  StartImageCropActivity(Uri uri){
+        Intent intent = new Intent(MainActivityYourStoryPage.this,MainActivityYourStories.class);
+        try {
+            String stringUri = uri.toString();
+
+            intent.putExtra("STRING_URI",stringUri);
+        } catch (Exception e){
+
+        }
+        startActivity(intent);
+
+    }
 }

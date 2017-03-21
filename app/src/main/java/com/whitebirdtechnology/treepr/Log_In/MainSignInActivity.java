@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.whitebirdtechnology.treepr.Launcher_screen.MainActivityLogInSignUp;
 import com.whitebirdtechnology.treepr.SharePreferences.SharePreferences;
 import com.whitebirdtechnology.treepr.Home_Page.MainHomeScreenActivity;
 import com.whitebirdtechnology.treepr.R;
@@ -74,6 +76,7 @@ public class MainSignInActivity extends AppCompatActivity {
     public static String stringStateNameSignUp;
     TextView textViewFacebookLogIn;
     TextView textViewSignUp;
+    ImageButton imageButtonBack;
     @Override
     @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,14 @@ public class MainSignInActivity extends AppCompatActivity {
         sharePreferences = new SharePreferences(this);
         volleyServices = new VolleyServices(this);
         textViewSignUp = (TextView)findViewById(R.id.textViewSignUp);
+        imageButtonBack = (ImageButton)findViewById(R.id.backButton);
+        imageButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainSignInActivity.this, MainActivityLogInSignUp.class));
+                MainSignInActivity.this.finish();
+            }
+        });
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

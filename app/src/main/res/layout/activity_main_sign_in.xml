@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_sign_in"
     android:layout_width="match_parent"
@@ -13,6 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:layout_margin="10dp"
+            android:src="@android:drawable/bottom_bar"
+            app:srcCompat="?attr/actionModeCloseDrawable" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -333,7 +333,8 @@ public class StoriesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         bundle.putString("Img", item.getStringImagePath());
                         bundle.putString("ImgProf", item.getStringPrfImgPath());
                         bundle.putString("Name", item.getStringImageName());
-                        bundle.putString("Loc", item.getStringSpotName() + ", " + item.getStringCityName());
+                        bundle.putString("Loc", item.getStringPlaceName() + ", " + item.getStringCityName());
+                        bundle.putString("SpotName",item.getStringSpotName());
                         bundle.putString("Status", item.getStringStatus());
                         bundle.putString("Comment", item.getStringInfo());
                         bundle.putString("SpotId", null);
@@ -415,8 +416,10 @@ public class StoriesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             }catch (Exception e){
                                 Lname = "";
                             }
-                            String boby = "Hey Treepr Planed For You With Your Friend :\n" +Fname+" "+Lname  + "\nHe Want To visit With You On Place:\n" + item.getStringPlaceName() + "\nAt City:" + item.getStringCityName();
-                            //
+                            String boby = "Hey,\n" +
+                                    "Your friend " +Fname+" "+Lname  + "\nis planning to visit "  +item.getStringSpotName()+", "+ item.getStringPlaceName() + "\nat city:" + item.getStringCityName()+" with you\n" +
+                                    "From Treepr" +
+                                    getString(R.string.WbPlayStoreLink);                            //
                             Intent sendIntent = new Intent(Intent.ACTION_SEND);
                             sendIntent.setType("text/plain");
                             String shareBody = boby;

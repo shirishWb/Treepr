@@ -117,6 +117,7 @@ public class MainActivityLogInSignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     startActivity(new Intent(MainActivityLogInSignUp.this, MainSignInActivity.class));
+                    MainActivityLogInSignUp.this.finish();
 
             }
         });

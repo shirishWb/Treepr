@@ -382,8 +382,8 @@ public class MainHomeScreenActivity extends AppCompatActivity
         }else if(id==R.id.nav_about){
             startActivity(new Intent(MainHomeScreenActivity.this, MainActivityAbout.class));
         }else if(id==R.id.nav_share){
-            String boby = "https://play.google.com/store/apps/developer?id=Whitebird+Technology\n" +
-                    "Hey Check Out This App Treepr and Planed For You With Your Friends ";
+            String boby = getString(R.string.WbPlayStoreLink)+"\n" +
+                    "Hey Check Out This App name Treepr and Planed trip With Your Friends ";
             //
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("text/plain");

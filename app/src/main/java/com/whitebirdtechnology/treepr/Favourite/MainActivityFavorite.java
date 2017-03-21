@@ -258,6 +258,7 @@ public class MainActivityFavorite extends AppCompatActivity implements SwipeRefr
                         bundle.putString("ImgProf", null);
                         bundle.putString("Name", null);
                         bundle.putString("Loc", item.getStringPlaceName() + ", " + item.getStringCityName());
+                        bundle.putString("SpotName",item.getStringImageName());
                         bundle.putString("Status", null);
                         bundle.putString("Comment", item.getStringInfo());
                         bundle.putString("SpotId", item.getStringSpotId());
@@ -310,8 +311,10 @@ public class MainActivityFavorite extends AppCompatActivity implements SwipeRefr
                             }catch (Exception e){
                                 Lname = "";
                             }
-                            String boby = "Hey Treepr Planed For You With Your Friend :\n" +Fname+" "+Lname  + "\nHe Want To visit With You On Place:\n" + item.getStringPlaceName() + "\nAt City:" + item.getStringCityName();
-                            //
+                            String boby = "Hey,\n" +
+                                    "Your friend " +Fname+" "+Lname  + "\nis planning to visit " +item.getStringImageName()+", "+ item.getStringPlaceName() + "\nat city:" + item.getStringCityName()+" with you\n" +
+                                    "From Treepr" +
+                                    getString(R.string.WbPlayStoreLink);                            //
                             Intent sendIntent = new Intent(Intent.ACTION_SEND);
                             sendIntent.setType("text/plain");
                             String shareBody = boby;

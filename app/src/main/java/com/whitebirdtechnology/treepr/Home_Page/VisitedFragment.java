@@ -311,8 +311,10 @@ public class VisitedFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             }catch (Exception e){
                                 Lname = "";
                             }
-                            String boby = "Hey Treepr Again Planed For You With Your Friend :\n" +Fname+" "+Lname  + "\nHe Want To visit With You On Place:\n" + item.getStringPlaceName() + "\nAt City:" + item.getStringCityName();
-                            //
+                            String boby = "Hey,\n" +
+                                    "Your friend " +Fname+" "+Lname  + "\nis planning to visit " +item.getStringSpotName()+", "+ item.getStringPlaceName() + "\nat city:" + item.getStringCityName()+" with you\n" +
+                                    "From Treepr" +
+                                    getString(R.string.WbPlayStoreLink);                            //
                             Intent sendIntent = new Intent(Intent.ACTION_SEND);
                             sendIntent.setType("text/plain");
                             String shareBody = boby;

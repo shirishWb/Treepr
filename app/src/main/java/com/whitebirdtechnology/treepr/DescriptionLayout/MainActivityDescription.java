@@ -25,11 +25,13 @@ import java.util.HashMap;
 public class MainActivityDescription extends AppCompatActivity {
 
     ImageView imageViewFullDescriptionPage,imageViewProfileImage;
-    TextView textViewName,textViewLocation,textViewStatus,textViewComment;
+    TextView textViewName,textViewLocation,textViewStatus,textViewComment,textViewPlace;
     Button buttonPlanNow,buttonVisited;
     CardView cardViewProf;
     CollapsingToolbarLayout collapsingToolbarLayout;
     VolleyServices volleyServices;
+    String stringImgFull = null;
+    String stringImgProf,stringName,stringLoc,stringStatus,stringComment,stringSpotName,stringSpotId,stringPlaceId,stringCityId;
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +50,24 @@ public class MainActivityDescription extends AppCompatActivity {
         buttonPlanNow = (Button)findViewById(R.id.buttonDespPageStoriesPlanNow);
         buttonVisited = (Button)findViewById(R.id.buttonDespPageAllVisited);
         cardViewProf = (CardView)findViewById(R.id.view_profile_in_stories);
+        textViewPlace = (TextView)findViewById(R.id.textViewDespPageStoriesPlace);
         if(Build.VERSION.SDK_INT<=Build.VERSION_CODES.LOLLIPOP) {
             collapsingToolbarLayout.setPadding(0, 0, 0, 0);
         }
         Bundle bundle = getIntent().getExtras().getBundle("Bundle");
-        String stringImgFull = null;
+
         if (bundle != null) {
             stringImgFull = bundle.getString("Img");
         }
-        String stringImgProf = bundle.getString("ImgProf");
-        String stringName = bundle.getString("Name");
-        final String stringLoc = bundle.getString("Loc");
-        String stringStatus = bundle.getString("Status");
-        String stringComment = bundle.getString("Comment");
-        final String stringSpotId = bundle.getString("SpotId");
-        final String stringPlaceId = bundle.getString("PlaceId");
-        final String stringCityId = bundle.getString("CityId");
+        stringImgProf = bundle.getString("ImgProf");
+        stringName = bundle.getString("Name");
+        stringLoc = bundle.getString("Loc");
+        stringStatus = bundle.getString("Status");
+        stringComment = bundle.getString("Comment");
+        stringSpotName = bundle.getString("SpotName");
+        stringSpotId = bundle.getString("SpotId");
+        stringPlaceId = bundle.getString("PlaceId");
+        stringCityId = bundle.getString("CityId");
         final Boolean visited = bundle.getBoolean("Visited");
         final String stringUID = sharePreferences.getDataFromSharePref(getString(R.string.sharPrfUID));
 
@@ -112,7 +116,8 @@ public class MainActivityDescription extends AppCompatActivity {
             textViewName.setVisibility(View.GONE);
         }
 
-        textViewLocation.setText(stringLoc);
+        textViewLocation.setText(stringSpotName);
+        textViewPlace.setText(stringLoc);
         assert stringStatus != null;
         try {
             if(!stringStatus.isEmpty()){
@@ -149,8 +154,26 @@ public class MainActivityDescription extends AppCompatActivity {
                 if(stringUID.equals("0")){
                     Toast.makeText(MainActivityDescription.this,"Please LogIn OR Sign Up",Toast.LENGTH_SHORT).show();
                 }else {
-                    String boby = "Hey Treeper Planed For You With Your Friend :\n"+sharePreferences.getDataFromSharePref(getString(R.string.sharPrfFrstName))+"\nHe Want To visit With You On Place:\n"+stringLoc;
-                    //
+                    String Fname=sharePreferences.getDataFromSharePref(getString(R.string.sharPrfFrstName));
+                    String Lname =sharePreferences.getDataFromSharePref(getString(R.string.sharPrfLstName));
+                    try {
+                        if(Fname.equals("null")||Fname.isEmpty()){
+                            Fname = "";
+                        }
+                    }catch (Exception e){
+                        Fname = "";
+                    }
+                    try {
+                        if(Lname.equals("null")||Lname.isEmpty()){
+                            Lname = "";
+                        }
+                    }catch (Exception e){
+                        Lname = "";
+                    }
+                    String boby = "Hey,\n" +
+                            "Your friend " +Fname+" "+Lname  + "\nis planning to visit " + stringSpotName + "\nat city:" + stringLoc+" with you\n" +
+                            "From Treepr" +
+                            getString(R.string.WbPlayStoreLink);                    //
                     Intent sendIntent = new Intent(Intent.ACTION_SEND);
                     sendIntent.setType("text/plain");
                     String shareBody = boby;

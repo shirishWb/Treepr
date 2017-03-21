@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:gravity="bottom"
     android:orientation="vertical"
@@ -20,11 +19,8 @@
         android:shape="ring"
         app:cardCornerRadius="40dp"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-        card_view:cardPreventCornerOverlap="true"
         android:thicknessRatio="1.9"
-        card_view:cardElevation="10dp"
-        card_view:cardCornerRadius="40dp"
-        >
+        android:elevation="10dip">
 
 
         <ImageView
@@ -43,12 +39,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewUserName"
         android:text="Guest User"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="36dp"
+        android:layout_toRightOf="@+id/cardViewProfileImage"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/textViewUserEmail"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/textViewUserName"
+        android:layout_toRightOf="@+id/cardViewProfileImage"
         android:layout_height="wrap_content"
         android:text="guest@guest.com" />
 
-</LinearLayout>
+</RelativeLayout>

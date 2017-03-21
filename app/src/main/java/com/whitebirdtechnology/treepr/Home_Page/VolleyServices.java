@@ -1071,9 +1071,7 @@ public class VolleyServices {
                                 feedItemStories.setStringCityName(jsonObject.getString(cityNameKey));
                                 feedItemStories.setStringInfo(jsonObject.getString(commentKey));
                                 feedItemStories.setStringStatus(jsonObject.getString(activity.getString(R.string.serviceKeyStatus)));
-//                                    feedItemStories.setStringCityID(jsonObject.getString(cityKey));
-                                //                                   feedItemStories.setStringPlaceID(jsonObject.getString(placeIdKey));
-                               // feedItemStories.setStringPrfImgPath(jsonObject.getString(activity.getString(R.string.serviceKeyProfileImagePath)));
+                                feedItemStories.setStringSpotName(jsonObject.getString(spotNameKey));
                                 feedItemStories.setStringCityID("");
                                 feedItemStories.setStringPlaceID("");
                                 feedItemStories.setStringPlaceName(jsonObject.getString(placeNameKey));
