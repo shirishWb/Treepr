@@ -89,11 +89,16 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity android:name=".Home_Page.MainActivityYourStories"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysVisible"/>
-        <activity android:name=".Favourite.MainActivityFavorite" />
-        <activity android:name=".YourStory.MainActivityYourStoryPage" />
-        <activity android:name=".DescriptionLayout.MainActivityDescription" />
-        <activity android:name=".AboutPage.MainActivityAbout"></activity>
+        <activity android:name=".Favourite.MainActivityFavorite"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".YourStory.MainActivityYourStoryPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DescriptionLayout.MainActivityDescription"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AboutPage.MainActivityAbout"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
