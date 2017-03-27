@@ -109,4 +109,7 @@
     <string name="white_bird_email">help@whitebird.co.in</string>
     <string name="menu_item_city">City \u25bc</string>
     <string name="WbPlayStoreLink">https://play.google.com/store/apps/developer?id=Whitebird+Technology</string>
+    <string name="tab1Text">Find best place near you to hangout,\nto go panic, to go treking or\nto just roam around</string>
+    <string name="tab2Text">Share your travel story with\nall the treepr\'s or plan you next\n journey</string>
+    <string name="tab3Text">Done! Let\'s Plan your\nnext Awesome Experience\nwith Treepr...</string>
 </resources>

@@ -16,7 +16,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.whitebirdtechnology.treepr.FirstTimeShowUp.FirstTimeShow;
 import com.whitebirdtechnology.treepr.Home_Page.MainHomeScreenActivity;
+import com.whitebirdtechnology.treepr.SharePreferences.SharePreferences;
 import com.whitebirdtechnology.treepr.Sign_Up.MainActivitySignUp;
 import com.whitebirdtechnology.treepr.Log_In.MainSignInActivity;
 import com.whitebirdtechnology.treepr.R;
@@ -29,6 +31,7 @@ public class MainActivityLogInSignUp extends AppCompatActivity {
     TextView textViewTitleTreepr;
     Button buttonSignInFirstPage,buttonSignUpFirstPage,buttonSkip;
     private int currentApiVersion;
+    SharePreferences sharePreferences;
 
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -74,6 +77,12 @@ public class MainActivityLogInSignUp extends AppCompatActivity {
         setContentView(R.layout.activity_main_log_in_sign_up);
         // Add code to print out the key hash
         verifyStoragePermissions(this);
+        sharePreferences = new SharePreferences(this);
+        if(!sharePreferences.getDataFromSharePref("OneTime").equals("111")) {
+            sharePreferences.saveDataInShrPref("OneTime","111");
+            startActivity(new Intent(MainActivityLogInSignUp.this, FirstTimeShow.class));
+
+        }
        // currentApiVersion = android.os.Build.VERSION.SDK_INT;
 /*
         final int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE

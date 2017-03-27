@@ -16,8 +16,10 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.support.design.widget.NavigationView;
@@ -60,7 +62,6 @@ public class MainHomeScreenActivity extends AppCompatActivity
     static Menu menus;
     VolleyServices volleyServices;
     Dialog dialogDis;
-    public static Spinner spinner;
     public static ListView modeList;
     public static CityAdepter adapter;
     public static HashMap<String,String> hashMapActiveCity,hashMapAcivCtyLati,hashMapAcivCtyLongi,hashMapActvCityName;
@@ -71,9 +72,8 @@ public class MainHomeScreenActivity extends AppCompatActivity
     boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
-        setTitle(WidthOfScreen()+"Home");
+        setTitle(WidthOfScreen()+"Treepr");
         super.onCreate(savedInstanceState);
-
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main_home_screen);
 
@@ -332,8 +332,8 @@ public class MainHomeScreenActivity extends AppCompatActivity
         } else if (id == R.id.nav_home) {
             TabFragment.viewPager.setCurrentItem(0);
         }  else if (id == R.id.nav_share) {
-            String boby = "Hey Checkout Treepr App for plan Trip and look for nearest places\n" +
-                    "https://play.google.com/store/apps/developer?id=Whitebird+Technology" ;
+            String boby = "Hey checkout Treepr app for planning trips and to look for nearest places\n" +
+                    "https://play.google.com/store/apps/details?id=com.whitebirdtechnology.treepr" ;
             //
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("text/plain");
@@ -381,7 +381,7 @@ public class MainHomeScreenActivity extends AppCompatActivity
 
         }else if(id==R.id.nav_about){
             startActivity(new Intent(MainHomeScreenActivity.this, MainActivityAbout.class));
-        }else if(id==R.id.nav_share){
+        }/*else if(id==R.id.nav_share){
             String boby = getString(R.string.WbPlayStoreLink)+"\n" +
                     "Hey Check Out This App name Treepr and Planed trip With Your Friends ";
             //
@@ -392,7 +392,7 @@ public class MainHomeScreenActivity extends AppCompatActivity
             //sendIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
             sendIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sendIntent, "Share Using"));
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -98,7 +98,10 @@
         <activity android:name=".DescriptionLayout.MainActivityDescription"
             android:screenOrientation="portrait"/>
         <activity android:name=".AboutPage.MainActivityAbout"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FirstTimeShowUp.FirstTimeShow"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"/>
     </application>
 
 </manifest>
